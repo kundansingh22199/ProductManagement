@@ -49,8 +49,8 @@ namespace B2CAdmin.AdminModule
                     txtGstIn.Text = dt.Rows[0]["GstinNo"].ToString();
                     txtMobileNo.Text = dt.Rows[0]["MobileNo"].ToString();
                     txtEmail.Text = dt.Rows[0]["Emailid"].ToString();
-                    DateTime dob = Convert.ToDateTime(dt.Rows[0]["Dob"]);
-                    txtDob.Text = dob.ToString();
+                    string DateofBirth = dt.Rows[0]["Dob"].ToString();
+                    txtDob.Text = Convert.ToDateTime(DateofBirth).ToString("yyyy-MM-dd");
                     txtCompanyName.Text = dt.Rows[0]["CompanyName"].ToString();
                     txtStore.Text = dt.Rows[0]["StoreName"].ToString();
                     txtBranch.Text = dt.Rows[0]["BranchDetails"].ToString();
@@ -226,39 +226,6 @@ namespace B2CAdmin.AdminModule
             {
                 count++;
             }
-            //string UserImg = Server.MapPath("~/Images/");
-            //if (!Directory.Exists(UserImg))
-            //{
-            //    Directory.CreateDirectory(UserImg);
-            //}
-            //UserImage.SaveAs(UserImg + Path.GetFileName(UserImage.FileName));
-            //UserImg = "~/Images/" + Path.GetFileName(UserImage.FileName);
-
-
-            //string AddharImg = Server.MapPath("~/Images/");
-            //if (!Directory.Exists(AddharImg))
-            //{
-            //    Directory.CreateDirectory(AddharImg);
-            //}
-            //AddharImage.SaveAs(AddharImg + Path.GetFileName(AddharImage.FileName));
-            //AddharImg = "~/Images/" + Path.GetFileName(AddharImage.FileName);
-
-            //string AddharImg2 = Server.MapPath("~/Images/");
-            //if (!Directory.Exists(AddharImg2))
-            //{
-            //    Directory.CreateDirectory(AddharImg2);
-            //}
-            //AddharImage2.SaveAs(AddharImg2 + Path.GetFileName(AddharImage2.FileName));
-            //AddharImg2 = "~/Images/" + Path.GetFileName(AddharImage2.FileName);
-
-
-            //string PanImg = Server.MapPath("~/Images/");
-            //if (!Directory.Exists(PanImg))
-            //{
-            //    Directory.CreateDirectory(PanImg);
-            //}
-            //PanImage.SaveAs(PanImg + Path.GetFileName(PanImage.FileName));
-            //PanImg = "~/Images/" + Path.GetFileName(PanImage.FileName);
 
             if (status == true && count == 0)
             {
@@ -273,29 +240,54 @@ namespace B2CAdmin.AdminModule
                 int PinCode = Convert.ToInt32(txtPinCode.Text.Trim());
                 string Password = random.Next(1111, 9999).ToString();
                 string action = "Insert";
-                int result = 0;
-                result = clsUser.InsertUpdateUser(User, txtUserName.Text.Trim(), txtMobileNo.Text.Trim(), txtEmail.Text.Trim(), txtCompanyName.Text.Trim(),
-                Password, userType, txtAddress.Text.Trim(), txtAadhar.Text.Trim(), txtPanCard.Text.Trim(), txtGstIn.Text.Trim(), fileName1,
-                fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, userid, action);
 
-                if (result > 0)
-                {
-                    messagebox.Visible = true;
-                    txtPass.InnerText = "\t Your User Id : "+User+" & Password is :" + Password;
-                    messageboxerror.Visible = false;
-                    Clear();
-                }
-                else
+                DataTable dtUser = clsUser.UserDetailsByUserId(User);
+                DataTable dtMobile = clsUser.UserDetailsByMobileNo(txtMobileNo.Text.Trim());
+                DataTable dtEmail = clsUser.UserDetailsByEmail(txtEmail.Text.Trim());
+                if (dtUser.Rows.Count > 0)
                 {
                     messagebox.Visible = false;
                     messageboxerror.Visible = true;
+                    errmsg.InnerText = "UserId Already Exixt Try Again";
                 }
+                else if(dtMobile.Rows.Count > 0)
+                {
+                    messagebox.Visible = false;
+                    messageboxerror.Visible = true;
+                    errmsg.InnerText = "Mobile No Already Exixt Try Again";
+                }
+                else if(dtEmail.Rows.Count > 0)
+                {
+                    messagebox.Visible = false;
+                    messageboxerror.Visible = true;
+                    errmsg.InnerText = "Email Id Already Exixt Try Again";
+                }
+                else
+                {
+                    int result = 0;
+                    result = clsUser.InsertUpdateUser(User, txtUserName.Text.Trim(), txtMobileNo.Text.Trim(), txtEmail.Text.Trim(), txtCompanyName.Text.Trim(),
+                    Password, userType, txtAddress.Text.Trim(), txtAadhar.Text.Trim(), txtPanCard.Text.Trim(), txtGstIn.Text.Trim(), fileName1,
+                    fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, userid, action);
 
+                    if (result > 0)
+                    {
+                        messagebox.Visible = true;
+                        txtPass.InnerText = "\t Your User Id : " + User + " & Password is :" + Password;
+                        messageboxerror.Visible = false;
+                        Clear();
+                    }
+                    else
+                    {
+                        messagebox.Visible = false;
+                        messageboxerror.Visible = true;
+                    }
+                }
             }
             else
             {
                 messagebox.Visible = false;
                 messageboxerror.Visible = true;
+                errmsg.Visible = false;
             }
         }
 

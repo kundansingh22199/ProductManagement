@@ -73,7 +73,6 @@ namespace B2CAdmin.AdminModule
                 btnSubmit.Visible = true;
             }
         }
-
         protected void btnAddCatogery_Click(object sender, EventArgs e)
         {
             int userid = Convert.ToInt32(Session["UserId"]);
@@ -107,7 +106,6 @@ namespace B2CAdmin.AdminModule
             ddlProductCatogery.Items.Insert(0, selectItem);
             ddlCatogery.Items.Insert(0, selectItem);
         }
-
         protected void btnAddSubCatogery_Click(object sender, EventArgs e)
         {
             int result = 0;
@@ -123,13 +121,11 @@ namespace B2CAdmin.AdminModule
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
             }
         }
-
         protected void btnStock_Click(object sender, EventArgs e)
         {
             string productCode = ViewState["ProductCode"].ToString();
             Response.Redirect("StockManagement.aspx?ProductCode=" + productCode + "");
         }
-
         protected void ddlProductCatogery_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlProductCatogery.SelectedValue == "Selected")
@@ -144,7 +140,6 @@ namespace B2CAdmin.AdminModule
             }
             
         }
-
         public void BindSubCatogery()
         {
             int catogeryId = Convert.ToInt32(ddlProductCatogery.SelectedValue);
@@ -158,11 +153,8 @@ namespace B2CAdmin.AdminModule
             selectItem.Selected = true;
             ddlProductSubCatogery.Items.Insert(0, selectItem);
         }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            
-
             if (imgupload1.HasFile)
             {
                 fileSize1 = imgupload1.PostedFile.ContentLength;
@@ -231,7 +223,7 @@ namespace B2CAdmin.AdminModule
             }
             else
             {
-                count++;
+                fileName3 = "";
             }
             if (imgupload4.HasFile)
             {
@@ -254,7 +246,7 @@ namespace B2CAdmin.AdminModule
             }
             else
             {
-                count++;
+                fileName4 = "";
             }
             if (imgupload5.HasFile)
             {
@@ -277,7 +269,7 @@ namespace B2CAdmin.AdminModule
             }
             else
             {
-                count++;
+                fileName5 = "";
             }
             if (imgupload6.HasFile)
             {
@@ -300,7 +292,7 @@ namespace B2CAdmin.AdminModule
             }
             else
             {
-                count++;
+                fileName6 = "";
             }
 
             if (status==true && count==0)

@@ -39,9 +39,6 @@
                             <div class="card-header">
                                 <h3 class="card-title">Stock Management</h3>
                                 <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-toggle="modal" data-target="#ProductAddModel">
-                                        Add Product
-                                    </button>
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
@@ -52,7 +49,7 @@
                                     <div class="col-sm-12">
                                         <div class="alert alert alert-dismissible bg-success" runat="server" visible="false" id="messagebox">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            <strong>Success!</strong>Data has been successfully Inserted .
+                                            <strong>Success!</strong>Successfully Operation.
                                             <span runat="server" id="txtPass"></span>
                                         </div>
                                         <div class="alert alert alert-dismissible bg-danger" runat="server" visible="false" id="messageboxerror">
@@ -157,56 +154,136 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
-                            <HeaderTemplate>
-                                <div class="table-container">
-                                    <div class="table-responsive" style="height: 400px; overflow: scroll;">
-                                        <table class="table table-striped  table-bordered" style="border: 1px solid; width: 100%; height: 30px;">
+                        <div class="input-group mb-2" style="width: 350px">
+                            <%--<asp:TextBox onkeyup="Search_Gridview(this)" placeholder="Search Here....!!" CssClass="form-control" runat="server" />--%>
+                            <asp:TextBox runat="server" ID="txtSearchProductCode" onkeyup="Search_Repeater(this)" placeholder="Search Here....!!" class="form-control"></asp:TextBox>
+                            <div class="input-group-prepend">
+                                <span class="input-group-button" style="padding: 0px; margin: 0px; display: block">
+                                    <asp:Button runat="server" ID="btnSearch" Text="SEARCH" class="btn btn-primary" OnClick="btnSearch_Click" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="table-responsive" style="height: 350px; overflow-x: scroll;">
+                            <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; width: 100%; overflow-x: scroll;">
+                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                                    <HeaderTemplate>
+                                        <thead>
                                             <tr style="background-color: #007bff; color: white">
                                                 <th>SL/NO</th>
                                                 <th>Product Code</th>
+                                                <th>MRP Price</th>
                                                 <th>Sales Price</th>
                                                 <th>Product Quantity</th>
                                                 <th>Product Size</th>
-                                                <th colspan="2">Operator</th>
+                                                <th colspan="4">Operator</th>
                                             </tr>
-                            </HeaderTemplate>
+                                        </thead>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label28" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblSalesPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SalesPrice")) %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="LinkButton1" CommandName="Stock" runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
+                                                    <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="LinkButton2" CommandName="Delete" runat="server" OnClientClick="return confirm('Are you sure, you want to delete this Stock?');"><i class="fas fa-trash fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </table>
+                        </div>
+                        <asp:Repeater ID="rptPager" runat="server">
                             <ItemTemplate>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblSalesPrice" runat="server" Text='<%# Eval("SalesPrice") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
-                                        <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
-                                    </td>
-                                    <td>
-                                        <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
-                                    </td>
-                                </tr>
+                                <asp:LinkButton ID="lnkPage" runat="server" Text='<%#Eval("Text") %>' CommandArgument='<%# Eval("Value") %>'
+                                    CssClass='<%# Convert.ToBoolean(Eval("Enabled")) ? "page_enabled" : "page_disabled" %>'
+                                    OnClick="Page_Changed" OnClientClick='<%# !Convert.ToBoolean(Eval("Enabled")) ? "return false;" : "" %>'></asp:LinkButton>
                             </ItemTemplate>
-                            <FooterTemplate>
-                                </table>
-                                    </div>
-                                </div>
-                            </FooterTemplate>
                         </asp:Repeater>
+
+                        <%--<table class="w-full whitespace-no-wrap" style="overflow-x: scroll; margin-top: -20px" id="myTable">
+
+                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                                <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                                    <HeaderTemplate>
+
+
+                                        <thead>
+                                            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                                <th class="px-4 py-3" style="width: 3%; text-align: center">Sl/No</th>
+                                                <th class="px-4 py-3" style="width: 15%; text-align: center">ProductCode</th>
+                                                <th class="py-3" style="width: 15%; text-align: center">MrpPrice</th>
+                                                <th class="py-3" style="width: 15%; text-align: center">SalesPrice</th>
+                                                <th class="py-3" style="width: 18%; text-align: center">ProductQuantity</th>
+                                                <th class="py-3" style="width: 18%; text-align: center">Size</th>
+                                            </tr>
+                                        </thead>
+
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+
+
+                                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                            <td class="py-3 text-sm" style="width: 3%; text-align: center">
+                                                <asp:Label ID="Label5" runat="server" Text='<%# Container.ItemIndex+1 %>'></asp:Label>
+                                            </td>
+                                            <td class="px-4 py-3" style="width: 15%; text-align: center">
+                                                <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                            </td>
+                                            <td class="py-3 text-sm" style="width: 15%; text-align: center">
+                                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("MrpPrice") %>'></asp:Label>
+                                            </td>
+                                            <td class="py-3 text-sm" style="width: 15%; text-align: center">
+                                                <asp:Label ID="Label4" runat="server" Text='<%# Eval("SalesPrice") %>'></asp:Label>
+                                            </td>
+                                            <td class="py-3 text-sm" style="width: 16%; text-align: center">
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
+                                            </td>
+                                            <td class="py-3 text-xs" style="width: 16%; text-align: center">
+                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                                                </span>
+                                            </td>
+                                           
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </tbody>
+                        </table>--%>
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
             <!-- Size Modal -->
             <div id="SizeModel" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -243,10 +320,7 @@
                 </div>
             </div>
             <!-- Size Modal End -->
-
-
-
-            <!-- Size Modal -->
+            <!-- Gst Modal -->
             <div id="TaxModel" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -283,127 +357,38 @@
                     </div>
                 </div>
             </div>
-            <!-- Size Modal End -->
-
-            <!-- Add Product Model -->
-            <div class="modal fade  bd-example-modal-xl" id="ProductAddModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered  modal-xl" role="document">
-                    <div class="modal-content" runat="server" id="divmodel">
+            <!-- Gst Modal End -->
+            <!-- Stock Modal -->
+            <div id="AddStockModel" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center!important; font-family: serif">Add Product Details</h5>
-                            <button type="button" runat="server" id="btn_close" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times</span>
-                            </button>
+                            <h4 class="modal-title text-left" style="text-align: left; position: relative">Add Stock</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="modal-body" style="width: 90%; margin: auto;">
-                            <div class="container-fluid" style="box-shadow: 0px 0px 5px 0px; padding-left: 0px; padding-right: 0px">
-                                <!-- general form elements -->
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Form</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="alert alert alert-dismissible bg-success" runat="server" visible="false" id="Div1">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                    <strong>Success!</strong>Data has been successfully Inserted .
-                                                    <span runat="server" id="txtmess"></span>
-                                                </div>
-                                                <div class="alert alert alert-dismissible bg-danger" runat="server" visible="false" id="Div2">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                    <strong>Error!</strong> something wrong
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="Label15" for="txtProductName">Product Name</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtProductName" placeholder="Enter Product Name" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="Label16" for="txtSerialNo">SerialNo</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtSerialNo" placeholder="Enter SerialNo" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:Label runat="server" ID="Label17" for="ddlProductCatogery">Product Catogery</asp:Label>
-                                                <div class="input-group mb-2">
-                                                    <asp:DropDownList ID="ddlProductCatogery" AutoPostBack="true" class="custom-select form-control-border" runat="server">
-                                                    </asp:DropDownList>
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" style="padding: 0px; margin: 0px; padding-right: 10px; padding-left: 10px; display: block">
-                                                            <i class="fas fa-plus" style="position: relative; top: 5px" data-toggle="modal" data-target="#CatogryModel"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:Label runat="server" ID="Label19">Product Sub Catogery</asp:Label>
-                                                <div class="input-group mb-2">
-                                                    <asp:DropDownList ID="ddlProductSubCatogery" class="custom-select form-control-border" runat="server">
-                                                    </asp:DropDownList>
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" style="padding: 0px; margin: 0px; padding-right: 10px; padding-left: 10px; display: block">
-                                                            <i class="fas fa-plus" style="position: relative; top: 5px" data-toggle="modal" data-target="#SubCatogeryModel"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="Label20" for="txtHsnCode">HSN Code</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtHsnCode" placeholder="Enter HSN Code" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <asp:Label runat="server" ID="Label23" for="txtBarCode">BarCode</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtBarCode" placeholder="Enter BarCode" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <asp:Label runat="server" ID="Label24" for="txtProductDetails">Product Details</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtProductDetails" placeholder="Enter Product Details" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <asp:Label runat="server" ID="Label27" for="txtOtherDetails">Other Details</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtOtherDetails" placeholder="Enter Other Details" class="form-control mb-2"></asp:TextBox>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" ID="imgupload1" CssClass="form-control border-1 mb-2" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload2" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload3" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload4" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload5" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload6" />
-                                            </div>
-                                            <div class="col-md-12">
-                                                <asp:Button runat="server" ID="Button1" Text="Submit" class="btn btn-primary mb-2" />
-                                                <asp:Button runat="server" ID="Button2" Text="Reset" class="btn btn-danger mb-2" />
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <asp:Label runat="server" ID="Label29" for="">Avilable Product</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtAvilableProduct" ReadOnly="true" class="form-control mb-2"></asp:TextBox>
                                 </div>
-                                <!-- /.card-body -->
+                                <div class="col-md-12">
+                                    <asp:Label runat="server" ID="Label32" for="">Add Product Size</asp:Label>
+                                    <asp:TextBox runat="server" ID="txtAddProduct" placeholder="Enter Product Size" class="form-control mb-2"></asp:TextBox>
+                                </div>
+                                <div class="col-sm-3">
+                                    <asp:Button runat="server" ID="btnAddStock" class="btn btn-primary" Text="ADD" OnClick="btnAddStock_Click" />
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Add Product Model End -->
+            <!-- Stock Modal End -->
 
             <script>
                 function myFunction() {
@@ -421,7 +406,6 @@
                         document.getElementById('<%= txtIgst.ClientID %>').value = C;
                     }
                 }
-
 
                 function CalculateFunction() {
                     debugger
@@ -459,7 +443,7 @@
                         parseFloat(document.getElementById('<%= txtSalesPrice.ClientID %>').value = 0);
                     }
                     if (!isNaN(PurchasePrice) && isNaN(Discount) && !isNaN(Tax)) {
-                        SalesPrice = PurchasePrice + ((PurchasePrice * Tax)/100)
+                        SalesPrice = PurchasePrice + ((PurchasePrice * Tax) / 100)
                         parseFloat(document.getElementById('<%= txtSalesPrice.ClientID %>').value = SalesPrice);
                     }
 
@@ -470,10 +454,6 @@
                         parseFloat(document.getElementById('<%= txtSalesPrice.ClientID %>').value = SalesPrice);
                     }
                 }
-
-                document.getElementById('<%= txtSalesPrice.ClientID %>').readOnly = true
-                document.getElementById('<%= txtProductCode.ClientID %>').readOnly = true
-
 
                 function isUrlValid(e) {
                     const pattern = new RegExp(
@@ -488,7 +468,6 @@
                     return pattern.test(e);
                 }
 
-
                 function isNumber(evt) {
                     evt = (evt) ? evt : window.event;
                     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -497,7 +476,38 @@
                     }
                     return true;
                 }
+
+                function ShowPopup() {
+                    debugger;
+                    $("#AddStockModel").modal("show");
+                    $("#AddStockModel").css('background', 'inherit');
+                }
+
+                function Search_Repeater(strKey) {
+                    debugger;
+                    var strData = strKey.value.toLowerCase().split(" ");
+                    var tblData = document.getElementById("myTable1");
+                    var rowData;
+                    for (var i = 1; i < tblData.rows.length; i++) {
+                        rowData = tblData.rows[i].innerHTML;
+                        var styleDisplay = 'none';
+                        for (var j = 0; j < strData.length; j++) {
+                            if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                                styleDisplay = '';
+                            else {
+                                styleDisplay = 'none';
+                                break;
+                            }
+                        }
+                        tblData.rows[i].style.display = styleDisplay;
+                    }
+                }
+
+                document.getElementById('<%= txtSalesPrice.ClientID %>').readOnly = true
+                document.getElementById('<%= txtProductCode.ClientID %>').readOnly = true
             </script>
+
+
         </section>
         <!-- /.container-fluid -->
 

@@ -64,6 +64,7 @@
                                         <div class="alert alert alert-dismissible bg-danger" runat="server" visible="false" id="messageboxerror">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                             <strong>Error!</strong> something wrong
+                                            <span runat="server" id="errmsg"></span>
                                         </div>
                                     </div>
                                     <%--<div class="col-sm-4">

@@ -173,6 +173,60 @@ namespace B2CAdmin.App_Code
                 return null;
             }
         }
+        public DataTable UserDetailsByUserId(string UserId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetUserDetailsByUserId", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", UserId);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public DataTable UserDetailsByMobileNo(string MobileMo)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetUserDetailsByMobile", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MobileNo", MobileMo);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public DataTable UserDetailsByEmail(string Email)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetUserDetailsByEmail", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Emailid", Email);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public int ForgetUserPassword(string UserId, string Password)
         {
             try
