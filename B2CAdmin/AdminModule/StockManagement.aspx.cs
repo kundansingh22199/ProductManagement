@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -21,10 +22,10 @@ namespace B2CAdmin.AdminModule
             if (!IsPostBack)
             {
                 BindCatogery();
-                GetStockLists();
+                GetStockLists(0);
                 BindTaxType();
                 GetValueFromQueryString();
-                this.GetStockDataUsingPagnation(1);
+                //this.GetStockDataUsingPagnation(1);
             }
         }
         public void GetValueFromQueryString()
@@ -41,14 +42,6 @@ namespace B2CAdmin.AdminModule
             {
 
             }
-        }
-        public void GetStockLists()
-        {
-            //DataTable dt = clsStock.GetStockData();
-            //Repeater1.DataSource = dt;
-            //Repeater1.DataBind();
-            //Repeater2.DataSource = dt;
-            //Repeater2.DataBind();
         }
         public void BindTaxType()
         {
@@ -113,7 +106,11 @@ namespace B2CAdmin.AdminModule
             int TaxType = Convert.ToInt32(ddlTaxType.SelectedValue);
             //decimal TxtAmount = Convert.ToDecimal(txtTax.Text.Trim());
             DateTime MfgDate = Convert.ToDateTime(txtMfgDate.Text.Trim());
-            DateTime ExpiryDate = Convert.ToDateTime(txtExpiryDate.Text.Trim());
+            string ExpiryDate = txtExpiryDate.Text;
+            if (ExpiryDate == null)
+            {
+                ExpiryDate = "";
+            }
             int CreateBy = Convert.ToInt32(Session["UserId"]);
             int UpdateBy = 0;
             string action = "Insert";
@@ -136,7 +133,7 @@ namespace B2CAdmin.AdminModule
                             TaxType, ddlProductSize.SelectedValue, MfgDate, ExpiryDate, CreateBy, UpdateBy, action);
                         if (result > 0)
                         {
-                            GetStockLists();
+                            GetStockLists(0);
                             messagebox.Visible = true;
                             messageboxerror.Visible = false;
                         }
@@ -279,7 +276,7 @@ namespace B2CAdmin.AdminModule
                 int result = clsStock.DeleteProductById(Id);
                 if (result > 0)
                 {
-                    GetStockLists();
+                    GetStockLists(0);
                 }
                 else
                 {
@@ -302,7 +299,11 @@ namespace B2CAdmin.AdminModule
             int TaxType = Convert.ToInt32(ddlTaxType.SelectedValue);
             //decimal TxtAmount = Convert.ToDecimal(txtTax.Text.Trim());
             DateTime MfgDate = Convert.ToDateTime(txtMfgDate.Text.Trim());
-            DateTime ExpiryDate = Convert.ToDateTime(txtExpiryDate.Text.Trim());
+            string ExpiryDate = txtExpiryDate.Text;
+            if (ExpiryDate == null)
+            {
+                ExpiryDate = "";
+            }
             int CreateBy = Convert.ToInt32(Session["UserId"]);
             int UpdateBy = 0;
             string action = "Update";
@@ -316,7 +317,7 @@ namespace B2CAdmin.AdminModule
                             TaxType, ddlProductSize.SelectedValue, MfgDate, ExpiryDate, CreateBy, UpdateBy, action);
                     if (result > 0)
                     {
-                        GetStockLists();
+                        GetStockLists(0);
                         messagebox.Visible = true;
                         messageboxerror.Visible = false;
                     }
@@ -355,7 +356,7 @@ namespace B2CAdmin.AdminModule
             int result = clsStock.UpdateStockById(ProductQuantity, UpdateBy, StockId);
             if (result > 0)
             {
-                GetStockLists();
+                GetStockLists(0);
             }
             else
             {
@@ -363,73 +364,74 @@ namespace B2CAdmin.AdminModule
             }
             
         }
-        public void SearchDataById()
+        public void GetStockLists(int pagenumber)
         {
-            DataTable dt = clsStock.GetStockByProductCode(txtSearchProductCode.Text.Trim());
-            if (dt.Rows.Count > 0)
+            try
             {
-                Repeater1.DataSource=null;
-                Repeater1.DataSource = dt;
-                Repeater1.DataBind();
+                DataTable dt = clsStock.GetStockData();
+
+                if (dt.Rows.Count > 0)
+                {
+                    PagedDataSource pgitems = new PagedDataSource();
+                    
+                    if (txtSearch.Text.Trim() == "")
+                    {
+                        pgitems.DataSource = dt.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+                    else
+                    {
+                        DataTable dt1 = clsStock.SearchStockData(txtSearch.Text.Trim());
+                        pgitems.DataSource = dt1.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+
+                    //control page size from here 
+                    pgitems.PageSize = 5;
+                    pgitems.CurrentPageIndex = pagenumber;
+                    if (pgitems.PageCount > 1)
+                    {
+                        rptPaging.Visible = true;
+                        ArrayList pages = new ArrayList();
+                        for (int i = 0; i <= pgitems.PageCount - 1; i++)
+                        {
+                            pages.Add((i + 1).ToString());
+                        }
+                        rptPaging.DataSource = pages;
+                        rptPaging.DataBind();
+                    }
+                    else
+                    {
+                        rptPaging.Visible = false;
+                    }
+                    Repeater1.DataSource = pgitems;
+                    Repeater1.DataBind();
+                    
+                }
+                else
+                {
+                    Repeater1.DataSource = null;
+                    Repeater1.DataBind();
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
             }
         }
+        protected void rptPaging_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int pagenumber = Convert.ToInt32(e.CommandArgument) - 1;
+            GetStockLists(pagenumber);
+        }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            SearchDataById();
-        }
-
-
-        public void GetStockDataUsingPagnation(int PageIndex)
-        {
-            //DataTable dt = clsStock.GetStockDataUsingPagnation(PageIndex, PageSize);
-            //if (dt.Rows.Count > 0)
-            //{
-            //    Repeater1.DataSource = dt;
-            //    Repeater1.DataBind();
-            //    int recordCount = Convert.ToInt32(dt.Rows.Count);
-            //    this.PopulatePager(recordCount, PageIndex);
-            //}
-
-            ClsSqlConnection clscon = new ClsSqlConnection();
-
-            using (SqlConnection con = new SqlConnection(clscon.GetConn()))
-            {
-                using (SqlCommand cmd = new SqlCommand("SP_GetStockPagination", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@PageIndex", PageIndex);
-                    cmd.Parameters.AddWithValue("@PageSize", PageSize);
-                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
-                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    Repeater1.DataSource = dt;
-                    Repeater1.DataBind();
-                    int recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
-                    this.PopulatePager(recordCount, PageIndex);
-                }
-            }
-        }
-        private void PopulatePager(int recordCount, int currentPage)
-        {
-            double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
-            int pageCount = (int)Math.Ceiling(dblPageCount);
-            List<ListItem> pages = new List<ListItem>();
-            if (pageCount > 0)
-            {
-                for (int i = 1; i <= pageCount; i++)
-                {
-                    pages.Add(new ListItem(i.ToString(), i.ToString(), i != currentPage));
-                }
-            }
-            rptPager.DataSource = pages;
-            rptPager.DataBind();
-        }
-        protected void Page_Changed(object sender, EventArgs e)
-        {
-            int pageIndex = int.Parse((sender as LinkButton).CommandArgument);
-            this.GetStockDataUsingPagnation(pageIndex);
+            GetStockLists(0);
         }
     }
 }

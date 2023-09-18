@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .form-control {
-            box-shadow:2px;
+            box-shadow: 2px;
         }
     </style>
 </asp:Content>
@@ -75,15 +75,15 @@
                                                         </div>
                                                     </div>--%>
                                                     <div class="col-sm-6">
-                                                        <asp:Label runat="server" ID="Label2" for="txtProductName">Product Name</asp:Label>
+                                                        <asp:Label runat="server" ID="Label2" for="txtProductName">Product Name<span style="color:red"><b>*</b></span></asp:Label>
                                                         <asp:TextBox runat="server" ID="txtProductName" placeholder="Enter Product Name" class="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <asp:Label runat="server" ID="Label14" for="txtSerialNo">SerialNo</asp:Label>
+                                                        <asp:Label runat="server" ID="Label14" for="txtSerialNo">SerialNo<span style="color:red"><b>*</b></span></asp:Label>
                                                         <asp:TextBox runat="server" ID="txtSerialNo" placeholder="Enter SerialNo" class="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <asp:Label runat="server" ID="Label4" for="ddlProductCatogery">Product Catogery</asp:Label>
+                                                        <asp:Label runat="server" ID="Label4" for="ddlProductCatogery">Product Catogery<span style="color:red"><b>*</b></span></asp:Label>
                                                         <div class="input-group mb-2">
                                                             <asp:DropDownList ID="ddlProductCatogery" AutoPostBack="true" class="custom-select form-control-border" runat="server" OnSelectedIndexChanged="ddlProductCatogery_SelectedIndexChanged">
                                                             </asp:DropDownList>
@@ -95,7 +95,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <asp:Label runat="server" ID="Label5">Product Sub Catogery</asp:Label>
+                                                        <asp:Label runat="server" ID="Label5">Product Sub Catogery<span style="color:red"><b>*</b></span></asp:Label>
                                                         <div class="input-group mb-2">
                                                             <asp:DropDownList ID="ddlProductSubCatogery" class="custom-select form-control-border" runat="server">
                                                             </asp:DropDownList>
@@ -107,15 +107,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <asp:Label runat="server" ID="Label3" for="txtHsnCode">HSN Code</asp:Label>
+                                                        <asp:Label runat="server" ID="Label3" for="txtHsnCode">HSN Code<span style="color:red"><b>*</b></span></asp:Label>
                                                         <asp:TextBox runat="server" ID="txtHsnCode" placeholder="Enter HSN Code" class="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <asp:Label runat="server" ID="Label8" for="txtBarCode">BarCode</asp:Label>
+                                                        <asp:Label runat="server" ID="Label8" for="txtBarCode">BarCode<span style="color:red"><b>*</b></span></asp:Label>
                                                         <asp:TextBox runat="server" ID="txtBarCode" placeholder="Enter BarCode" class="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                        <asp:Label runat="server" ID="Label7" for="txtProductDetails">Product Details</asp:Label>
+                                                        <asp:Label runat="server" ID="Label7" for="txtProductDetails">Product Details<span style="color:red"><b>*</b></span></asp:Label>
                                                         <asp:TextBox runat="server" ID="txtProductDetails" placeholder="Enter Product Details" class="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-12">
@@ -132,11 +132,20 @@
                                                             <img src="dist/img/avatar5.png" id="output" style="width: 100%; height: 220px" />
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <%--<input type="file" class="form-control border-1" id="imgupload1" runnet="server" />--%>
-                                                            <asp:FileUpload runat="server" ID="imgupload1" CssClass="form-control border-1 mb-2" onchange="loadFile(event)" />
+                                                            <div class="input-group-prepend">
+                                                                <asp:FileUpload runat="server" ID="imgupload1" CssClass="form-control border-1 mb-2" onchange="loadFile(event)" />
+                                                                <span class="input-groupt" style="color: red">
+                                                                    <b>*</b>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload2" onchange="loadFile(event)" />
+                                                            <div class="input-group-prepend">
+                                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload2" onchange="loadFile(event)" />
+                                                                <span class="input-groupt" style="color: red">
+                                                                    <b>*</b>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload3" onchange="loadFile(event)" />
@@ -175,10 +184,6 @@
                         var image = document.getElementById("output");
                         image.src = URL.createObjectURL(event.target.files[0]);
                     };
-
-
-
-
 
                     var m1, m2, m3, m4, m5, m6;
                     var f1 = document.getElementById("imgupload1");

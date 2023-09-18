@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminModule/Master.Master" AutoEventWireup="true" CodeBehind="StockManagement.aspx.cs" Inherits="B2CAdmin.AdminModule.StockManagement" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    ]
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         
-       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -59,11 +59,11 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label2">Product Code</asp:Label>
+                                        <asp:Label runat="server" ID="Label2">Product Code<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:TextBox runat="server" ID="txtProductCode" placeholder="Enter Product Code" class="form-control mb-2" OnTextChanged="txtProductCode_TextChanged" AutoPostBack="true" onkeypress="return isUrlValid(event)"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label4">Product Size</asp:Label>
+                                        <asp:Label runat="server" ID="Label4">Product Size<span style="color:red"><b>*</b></span></asp:Label>
                                         <div class="input-group mb-2">
                                             <asp:DropDownList ID="ddlProductSize" class="custom-select form-control-border" runat="server">
                                             </asp:DropDownList>
@@ -75,11 +75,11 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label3">Product Quantity</asp:Label>
+                                        <asp:Label runat="server" ID="Label3">Product Quantity<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:TextBox runat="server" TextMode="Number" ID="txtQuantity" placeholder="Enter Product Quantity" class="form-control mb-2" onkeypress="return isNumber(event)"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label7">Manufacturer Date </asp:Label>
+                                        <asp:Label runat="server" ID="Label7">Manufacturer Date<span style="color:red"><b>*</b></span> </asp:Label>
                                         <asp:TextBox runat="server" TextMode="Date" ID="txtMfgDate" placeholder="Enter Manufacture Date" class="form-control mb-2"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
@@ -91,15 +91,15 @@
                                         <asp:TextBox runat="server" ID="txtProductname" placeholder="Enter Product Name" class="form-control"></asp:TextBox>
                                     </div>--%>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label1">MRP  Price</asp:Label>
-                                        <asp:TextBox runat="server" ID="txtMrp" placeholder="Enter MRP Price" class="form-control mb-2" onkeypress="return isNumber(event)"></asp:TextBox>
+                                        <asp:Label runat="server" ID="Label1">MRP  Price<span style="color:red"><b>*</b></span></asp:Label>
+                                        <asp:TextBox runat="server" ID="txtMrp" placeholder="Enter MRP Price" class="form-control mb-2" onkeypress="return isNumberKey(event)"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label21">Purchase Price</asp:Label>
+                                        <asp:Label runat="server" ID="Label21">Purchase Price<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:TextBox runat="server" ID="txtPurchasePrice" placeholder="Enter Purchase Price" class="form-control mb-2" onkeypress="return isNumber(event)" oninput="CalculateFunction();"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label5">Discount </asp:Label>
+                                        <asp:Label runat="server" ID="Label5">Discount<span style="color:red"><b>*</b></span> </asp:Label>
                                         <div class="input-group mb-2">
                                             <asp:TextBox runat="server" ID="txtDiscount" placeholder="Enter Product Size" class="form-control" onkeypress="return isNumber(event)" oninput="CalculateFunction();"></asp:TextBox>
 
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <asp:Label runat="server" ID="Label9">Tax Type</asp:Label>
+                                        <asp:Label runat="server" ID="Label9">Tax Type<span style="color:red"><b>*</b></span></asp:Label>
                                         <div class="input-group  mb-2">
                                             <asp:DropDownList ID="ddlTaxType" class="custom-select form-control-border" runat="server" oninput="CalculateFunction();" AutoPostBack="true" OnSelectedIndexChanged="ddlTaxType_SelectedIndexChanged">
                                             </asp:DropDownList>
@@ -153,134 +153,85 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-3">
+                        <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-2">
+                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click" />
+                        </div>
+                    </div>
+                    <div class="col-md-7 text-right">
+                        <asp:Button runat="server" ID="Button1" CssClass="btn btn-primary" Text="Export In Excel" />
+                    </div>
                     <div class="col-md-12">
-                        <div class="input-group mb-2" style="width: 350px">
-                            <%--<asp:TextBox onkeyup="Search_Gridview(this)" placeholder="Search Here....!!" CssClass="form-control" runat="server" />--%>
-                            <asp:TextBox runat="server" ID="txtSearchProductCode" onkeyup="Search_Repeater(this)" placeholder="Search Here....!!" class="form-control"></asp:TextBox>
-                            <div class="input-group-prepend">
-                                <span class="input-group-button" style="padding: 0px; margin: 0px; display: block">
-                                    <asp:Button runat="server" ID="btnSearch" Text="SEARCH" class="btn btn-primary" OnClick="btnSearch_Click" />
-                                </span>
-                            </div>
-                        </div>
-                        <div class="table-responsive" style="height: 350px; overflow-x: scroll;">
-                            <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; width: 100%; overflow-x: scroll;">
-                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
-                                    <HeaderTemplate>
-                                        <thead>
-                                            <tr style="background-color: #007bff; color: white">
-                                                <th>SL/NO</th>
-                                                <th>Product Code</th>
-                                                <th>MRP Price</th>
-                                                <th>Sales Price</th>
-                                                <th>Product Quantity</th>
-                                                <th>Product Size</th>
-                                                <th colspan="4">Operator</th>
-                                            </tr>
-                                        </thead>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                            <tr>
-                                                <td>
-                                                    <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="Label28" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="lblSalesPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SalesPrice")) %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <asp:LinkButton ID="LinkButton1" CommandName="Stock" runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
-                                                </td>
-                                                <td>
-                                                    <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
-                                                    <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
-                                                </td>
-                                                <td>
-                                                    <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
-                                                </td>
-                                                <td>
-                                                    <asp:LinkButton ID="LinkButton2" CommandName="Delete" runat="server" OnClientClick="return confirm('Are you sure, you want to delete this Stock?');"><i class="fas fa-trash fa-xl" style="font-size:25px"></i> </asp:LinkButton>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                    </FooterTemplate>
-                                </asp:Repeater>
-                            </table>
-                        </div>
-                        <asp:Repeater ID="rptPager" runat="server">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lnkPage" runat="server" Text='<%#Eval("Text") %>' CommandArgument='<%# Eval("Value") %>'
-                                    CssClass='<%# Convert.ToBoolean(Eval("Enabled")) ? "page_enabled" : "page_disabled" %>'
-                                    OnClick="Page_Changed" OnClientClick='<%# !Convert.ToBoolean(Eval("Enabled")) ? "return false;" : "" %>'></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:Repeater>
-
-                        <%--<table class="w-full whitespace-no-wrap" style="overflow-x: scroll; margin-top: -20px" id="myTable">
-
-                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-
-                                <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="Repeater1_ItemCommand">
-                                    <HeaderTemplate>
-
-
-                                        <thead>
-                                            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                                <th class="px-4 py-3" style="width: 3%; text-align: center">Sl/No</th>
-                                                <th class="px-4 py-3" style="width: 15%; text-align: center">ProductCode</th>
-                                                <th class="py-3" style="width: 15%; text-align: center">MrpPrice</th>
-                                                <th class="py-3" style="width: 15%; text-align: center">SalesPrice</th>
-                                                <th class="py-3" style="width: 18%; text-align: center">ProductQuantity</th>
-                                                <th class="py-3" style="width: 18%; text-align: center">Size</th>
-                                            </tr>
-                                        </thead>
-
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-
-
-                                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                            <td class="py-3 text-sm" style="width: 3%; text-align: center">
-                                                <asp:Label ID="Label5" runat="server" Text='<%# Container.ItemIndex+1 %>'></asp:Label>
-                                            </td>
-                                            <td class="px-4 py-3" style="width: 15%; text-align: center">
-                                                <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
-                                            </td>
-                                            <td class="py-3 text-sm" style="width: 15%; text-align: center">
-                                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("MrpPrice") %>'></asp:Label>
-                                            </td>
-                                            <td class="py-3 text-sm" style="width: 15%; text-align: center">
-                                                <asp:Label ID="Label4" runat="server" Text='<%# Eval("SalesPrice") %>'></asp:Label>
-                                            </td>
-                                            <td class="py-3 text-sm" style="width: 16%; text-align: center">
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
-                                            </td>
-                                            <td class="py-3 text-xs" style="width: 16%; text-align: center">
-                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
-                                                </span>
-                                            </td>
-                                           
+                        <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; width: 100%; overflow-x: scroll;">
+                            <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                                <HeaderTemplate>
+                                    <thead>
+                                        <tr style="background-color: #007bff; color: white">
+                                            <th>SL/NO</th>
+                                            <th>Product Code</th>
+                                            <th>Name</th>
+                                            <th>MRP Price</th>
+                                            <th>Sales Price</th>
+                                            <th>Quantity</th>
+                                            <th>Product Size</th>
+                                            <th colspan="4">Operator</th>
                                         </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                    </FooterTemplate>
-                                </asp:Repeater>
-                            </tbody>
-                        </table>--%>
+                                    </thead>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="Label28" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lblSalesPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SalesPrice")) %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:LinkButton ID="LinkButton1" CommandName="Stock" runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
+                                                <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                            </td>
+                                            <td>
+                                                <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                            </td>
+                                            <td>
+                                                <asp:LinkButton ID="LinkButton2" CommandName="Delete" runat="server" OnClientClick="return confirm('Are you sure, you want to delete this Stock?');"><i class="fas fa-trash fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </table>
+                        <div style="overflow: hidden;">
+                            <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnPage" CssClass="btn btn-primary" CommandName="Page" CommandArgument="<%# Container.DataItem %>" runat="server" ForeColor="White" Font-Bold="True"><%# Container.DataItem %></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -502,12 +453,11 @@
                         tblData.rows[i].style.display = styleDisplay;
                     }
                 }
-
                 document.getElementById('<%= txtSalesPrice.ClientID %>').readOnly = true
                 document.getElementById('<%= txtProductCode.ClientID %>').readOnly = true
             </script>
 
-
+            <script src="jquery-1.10.2.js" type="text/javascript"></script>
         </section>
         <!-- /.container-fluid -->
 

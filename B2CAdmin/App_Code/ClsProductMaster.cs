@@ -204,5 +204,16 @@ namespace B2CAdmin.App_Code
                 return 0;
             }
         }
+        public DataTable SearchProductBySearchText(string SearchText )
+        {
+            SqlConnection con = new SqlConnection(SqlCon);
+            SqlCommand cmd = new SqlCommand("SP_SearchProduct", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SearchData", SearchText);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt;
+        }
     }
 }

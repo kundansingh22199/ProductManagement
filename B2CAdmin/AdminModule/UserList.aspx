@@ -25,15 +25,23 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <asp:Button runat="server" ID="btnExportInExcel" CssClass="btn btn-primary" OnClick="btnExportInExcel_Click" Text="Export to excel"/>
+                    <div class="col-md-3">
+                        <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-2">
+                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click" />
+                        </div>
+                    </div>
+                    <div class="col-md-7 text-right">
+                        <asp:Button runat="server" ID="btnExportInExcel" CssClass="btn btn-primary" OnClick="btnExportInExcel_Click" Text="Export to excel" />
                     </div>
                     <div class="col-md-12">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <HeaderTemplate>
                                 <div class="table-container">
                                     <div class="table-responsive" style="height: 400px; overflow: scroll;">
-                                        <table class="table table-striped  table-bordered" style="border: 1px solid; width: 100%; height: 30px;">
+                                        <table class="table table-striped  table-bordered" id="myTable" style="border: 1px solid; width: 100%; height: 30px;">
                                             <tr style="background-color: #007bff; color: white">
                                                 <th>SL/NO</th>
                                                 <th>User Image</th>
@@ -43,7 +51,6 @@
                                                 <th>Mobile No</th>
                                                 <th>Email-Id</th>
                                                 <th colspan="3">Operator</th>
-
                                             </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -52,7 +59,7 @@
                                         <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Image ID="Label3" runat="server" ImageUrl='<%# Eval("UserImage") %>' class="img-size-50 img-circle"  style="height:36px; width:36px;"></asp:Image>
+                                        <asp:Image ID="Label3" runat="server" ImageUrl='<%# Eval("UserImage") %>' class="img-size-50 img-circle" Style="height: 36px; width: 36px;"></asp:Image>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblSchemeName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
@@ -87,6 +94,13 @@
                                 </div>
                             </FooterTemplate>
                         </asp:Repeater>
+                        <div style="overflow: hidden;">
+                            <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnPage" CssClass="btn btn-primary" CommandName="Page" CommandArgument="<%# Container.DataItem %>" runat="server" ForeColor="White" Font-Bold="True"><%# Container.DataItem %></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
                         <div class="modal fade  bd-example-modal-xl" id="UserDetailsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered  modal-xl" role="document">
                                 <div class="modal-content" runat="server" id="divmodel">
@@ -110,7 +124,7 @@
                                                 <td><b>Company Name :</b><asp:Label ID="lblCompany" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>UserType :</b><asp:Label ID="lblUserType" class="form-control" runat="server"></asp:Label></td>
                                             </tr>
-                                            <tr style="border:1px">
+                                            <tr style="border: 1px">
                                                 <td><b>Address :</b><asp:Label ID="lblAddress" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>GSTIN :</b><asp:Label ID="lblGstIn" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>AddharNo :</b><asp:Label ID="lblAddharNo" class="form-control" runat="server"></asp:Label></td>
@@ -124,11 +138,19 @@
                                             <%--<tr style="border: 1px">
                                                 <td><b>Update Date :</b><asp:Label ID="lblUpdateDate" class="form-control" runat="server"></asp:Label></td>
                                             </tr>--%>
-                                            <tr style="border: 1px;width:auto" >
-                                                <td><b>User Image </b><br /><asp:Image ID="UserImage" CssClass="img img-fluid" runat="server" style="height:100px;width:100px" /></td>
-                                                <td><b>Addhar Font Image </b><br /><asp:Image ID="AddharImage" CssClass="img img-fluid" runat="server" style="height:100px;width:150px" /></td>
-                                                <td><b>Addhar Back Image </b><br /><asp:Image ID="AddharImage2" CssClass="img img-fluid" runat="server" style="height:100px;width:150px" /></td>
-                                                <td><b>Pan Card Image </b><br /><asp:Image ID="PanImage" CssClass="img img-fluid" runat="server" style="height:100px;width:150px"/></td>
+                                            <tr style="border: 1px; width: auto">
+                                                <td><b>User Image </b>
+                                                    <br />
+                                                    <asp:Image ID="UserImage" CssClass="img img-fluid" runat="server" Style="height: 100px; width: 100px" /></td>
+                                                <td><b>Addhar Font Image </b>
+                                                    <br />
+                                                    <asp:Image ID="AddharImage" CssClass="img img-fluid" runat="server" Style="height: 100px; width: 150px" /></td>
+                                                <td><b>Addhar Back Image </b>
+                                                    <br />
+                                                    <asp:Image ID="AddharImage2" CssClass="img img-fluid" runat="server" Style="height: 100px; width: 150px" /></td>
+                                                <td><b>Pan Card Image </b>
+                                                    <br />
+                                                    <asp:Image ID="PanImage" CssClass="img img-fluid" runat="server" Style="height: 100px; width: 150px" /></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -145,7 +167,27 @@
                                 $("#UserDetailsModel").modal("show");
                                 $("#UserDetailsModel").css('background', 'inherit');
                             }
-                            
+
+                            function Search_Repeater(strKey) {
+                                debugger;
+                                var strData = strKey.value.toLowerCase().split(" ");
+                                var tblData = document.getElementById("myTable");
+                                var rowData;
+                                for (var i = 1; i < tblData.rows.length; i++) {
+                                    rowData = tblData.rows[i].innerHTML;
+                                    var styleDisplay = 'none';
+                                    for (var j = 0; j < strData.length; j++) {
+                                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                                            styleDisplay = '';
+                                        else {
+                                            styleDisplay = 'none';
+                                            break;
+                                        }
+                                    }
+                                    tblData.rows[i].style.display = styleDisplay;
+                                }
+                            }
+
                         </script>
 
                     </div>
@@ -251,7 +293,7 @@
                                 </div>
                             </FooterTemplate>
                         </asp:Repeater>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>

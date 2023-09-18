@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI.HtmlControls;
+using System.Collections;
 
 namespace B2CAdmin.AdminModule
 {
@@ -19,18 +20,10 @@ namespace B2CAdmin.AdminModule
         {
             if (!IsPostBack)
             {
-                UserLists();
+                UserLists(0);
             }
         }
-        public void UserLists()
-        {
-            DataTable dt= clsUser.UserDetails();
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
-
-            Repeater2.DataSource = dt;
-            Repeater2.DataBind();
-        }
+        
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -66,7 +59,7 @@ namespace B2CAdmin.AdminModule
                 int result = clsUser.DeleteUserData(Id);
                 if (result > 0)
                 {
-                    UserLists();
+                    UserLists(0);
                 }
                 else
                 {
@@ -123,6 +116,75 @@ namespace B2CAdmin.AdminModule
 
 
 
+        }
+        public void UserLists(int pagenumber)
+        {
+            try
+            {
+                DataTable dt = clsUser.UserDetails();
+                Repeater2.DataSource = dt;
+                Repeater2.DataBind();
+
+                if (dt.Rows.Count > 0)
+                {
+                    PagedDataSource pgitems = new PagedDataSource();
+                    if (txtSearch.Text.Trim() == "")
+                    {
+                        pgitems.DataSource = dt.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+                    else
+                    {
+                        DataTable dt1 = clsUser.SearchUserList(txtSearch.Text.Trim());
+                        pgitems.DataSource = dt1.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+
+                    //control page size from here 
+                    pgitems.PageSize = 5;
+                    pgitems.CurrentPageIndex = pagenumber;
+                    if (pgitems.PageCount > 1)
+                    {
+                        rptPaging.Visible = true;
+                        ArrayList pages = new ArrayList();
+                        for (int i = 0; i <= pgitems.PageCount - 1; i++)
+                        {
+                            pages.Add((i + 1).ToString());
+                        }
+                        rptPaging.DataSource = pages;
+                        rptPaging.DataBind();
+                    }
+                    else
+                    {
+                        rptPaging.Visible = false;
+                    }
+                    Repeater1.DataSource = pgitems;
+                    Repeater1.DataBind();
+                }
+                else
+                {
+                    Repeater1.DataSource = null;
+                    Repeater1.DataBind();
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+        protected void rptPaging_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int pagenumber = Convert.ToInt32(e.CommandArgument) - 1;
+            UserLists(pagenumber);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            UserLists(0);
         }
     }
 }

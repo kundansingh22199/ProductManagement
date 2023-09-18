@@ -15,6 +15,24 @@ namespace B2CAdmin.AdminModule
     {
 
         /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
         /// btnExportInExcel control.
         /// </summary>
         /// <remarks>
@@ -31,6 +49,15 @@ namespace B2CAdmin.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
+
+        /// <summary>
+        /// rptPaging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPaging;
 
         /// <summary>
         /// divmodel control.
@@ -147,7 +174,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image1;
+        protected global::System.Web.UI.WebControls.Image image1;
 
         /// <summary>
         /// image2 control.
@@ -156,7 +183,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image2;
+        protected global::System.Web.UI.WebControls.Image image2;
 
         /// <summary>
         /// image3 control.
@@ -165,7 +192,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image3;
+        protected global::System.Web.UI.WebControls.Image image3;
 
         /// <summary>
         /// image4 control.
@@ -174,7 +201,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image4;
+        protected global::System.Web.UI.WebControls.Image image4;
 
         /// <summary>
         /// image5 control.
@@ -183,7 +210,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image5;
+        protected global::System.Web.UI.WebControls.Image image5;
 
         /// <summary>
         /// image6 control.
@@ -192,7 +219,7 @@ namespace B2CAdmin.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage image6;
+        protected global::System.Web.UI.WebControls.Image image6;
 
         /// <summary>
         /// btnPrint control.

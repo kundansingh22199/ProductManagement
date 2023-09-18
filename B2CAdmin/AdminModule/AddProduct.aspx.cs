@@ -301,10 +301,15 @@ namespace B2CAdmin.AdminModule
                 string productCode = "WTS" + DateTime.Now.ToString("ddMMyyyy") + random.Next(1111, 9999).ToString();
                 int result = 0;
                 int userid = Convert.ToInt32(Session["UserId"]);
+                string otherDetails = txtOtherDetails.Text.Trim();
+                if(otherDetails=="" || otherDetails == null)
+                {
+                    otherDetails = "";
+                }
                 string Action = "Insert";
                 result = clsProduct.AddProductData(productCode, txtProductName.Text.Trim(), ddlProductCatogery.SelectedValue, ddlProductSubCatogery.SelectedValue,
                     txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
-                    txtSerialNo.Text.Trim(), txtOtherDetails.Text.Trim(), userid, Action);
+                    txtSerialNo.Text.Trim(), otherDetails, userid, Action);
 
                 int ProductId = clsProduct.ProductListDetailsByProductCode(productCode);
                 if (result > 0)
@@ -554,11 +559,16 @@ namespace B2CAdmin.AdminModule
             {
                 string productCode = ViewState["ProductCode"].ToString();
                 int result = 0;
+                string otherDetails = txtOtherDetails.Text.Trim();
+                if (otherDetails == "" || otherDetails == null)
+                {
+                    otherDetails = "";
+                }
                 int userid = Convert.ToInt32(Session["UserId"]);
                 string Action = "Update";
                 result = clsProduct.AddProductData(productCode, txtProductName.Text.Trim(), ddlProductCatogery.SelectedValue, ddlProductSubCatogery.SelectedValue,
                     txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
-                    txtSerialNo.Text.Trim(), txtOtherDetails.Text.Trim(), userid, Action);
+                    txtSerialNo.Text.Trim(), otherDetails, userid, Action);
 
                 int ProductId = clsProduct.ProductListDetailsByProductCode(productCode);
                 if (result > 0)

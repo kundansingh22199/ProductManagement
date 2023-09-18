@@ -2118,6 +2118,9 @@
     <Compile Include="Forget Password.aspx.designer.cs">
       <DependentUpon>Forget Password.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\NewHandler.ashx.cs">
+      <DependentUpon>NewHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
@@ -2353,6 +2356,7 @@
     <Content Include="AdminModule\plugins\summernote\summernote.js.map" />
     <Content Include="AdminModule\plugins\summernote\summernote.min.js.map" />
     <Content Include="AdminModule\plugins\toastr\toastr.js.map" />
+    <Content Include="Handlers\NewHandler.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2360,6 +2364,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

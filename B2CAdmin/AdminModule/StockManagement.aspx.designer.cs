@@ -321,13 +321,13 @@ namespace B2CAdmin.AdminModule
         protected global::System.Web.UI.WebControls.Button btnReset;
 
         /// <summary>
-        /// txtSearchProductCode control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchProductCode;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
         /// btnSearch control.
@@ -339,6 +339,15 @@ namespace B2CAdmin.AdminModule
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
         /// Repeater1 control.
         /// </summary>
         /// <remarks>
@@ -348,13 +357,13 @@ namespace B2CAdmin.AdminModule
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
 
         /// <summary>
-        /// rptPager control.
+        /// rptPaging control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPager;
+        protected global::System.Web.UI.WebControls.Repeater rptPaging;
 
         /// <summary>
         /// Label18 control.

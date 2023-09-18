@@ -1,69 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminModule/Master.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="B2CAdmin.AdminModule.ProductList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .container {
-            width: 100%;
-            background-color: white;
-        }
-
-        .controls-container:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-
-        .control {
-            position: relative;
-            float: left;
-            width: 16.5%;
-            height: 100%;
-        }
-
-        .control-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid white;
-            position: absolute;
-            transform: translateX(-50%) translateY(-50%);
-            top: 50%;
-            left: 50%;
-            cursor: pointer;
-            color: white;
-            font-size: 30px;
-            text-align: center;
-            line-height: 40px;
-            transition: all .3s;
-        }
-
-            .control-btn:hover {
-                background-color: rgba(98, 89, 89, .4);
-            }
-
-        #images-container {
-            height: 200px;
-            position: relative;
-        }
-
-        .image {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: all .5s;
-        }
-
-            .image[data-active="active"] {
-                opacity: 1;
-            }
-            
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -88,22 +25,44 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                     <div class="col-md-12 text-left">
-                        <asp:Button runat="server" ID="btnExportInExcel" CssClass="btn btn-primary" OnClick="btnExportInExcel_Click" Text="Export to excel"/>
+                    <%--<div class="col-md-3">
+                        <asp:DropDownList runat="server" ID="ddlSearch" CssClass="form-control">
+                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                            <asp:ListItem Value="ProductName" Text="Product Name"></asp:ListItem>
+                            <asp:ListItem Value="ProductCode" Text="Product Code"></asp:ListItem>
+                            <asp:ListItem Value="SerialNo" Text="Serial No"></asp:ListItem>
+                            <asp:ListItem Value="Catogery" Text="Catogery Name"></asp:ListItem>
+                            <asp:ListItem Value="SubCatogery" Text="SubCatogery Name"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>--%>
+                    <div class="col-md-3">
+                        <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-2">
+                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click" />
+                        </div>
+                    </div>
+                    <div class="col-md-7 text-right">
+                        <asp:Button runat="server" ID="btnExportInExcel" CssClass="btn btn-primary" OnClick="btnExportInExcel_Click" Text="Export to excel" />
                     </div>
                     <div class="col-md-12">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <HeaderTemplate>
                                 <div class="table-container">
                                     <div class="table-responsive" style="height: 400px; overflow: scroll;">
-                                        <table class="table table-striped  table-bordered" style="border: 1px solid; width: 100%; height: 30px;">
+                                        <table class="table table-striped  table-bordered" id="myTable" style="border: 1px solid; width: 100%; height: 30px;">
                                             <tr style="background-color: #007bff; color: white">
-                                                <th><asp:Label ID="headsl" runat="server" Text="SL/NO"></asp:Label></th>
+                                                <th>
+                                                    <asp:Label ID="headsl" runat="server" Text="SL/NO"></asp:Label></th>
                                                 <th>Product Image</th>
                                                 <th>Product Code</th>
                                                 <th>Product Name</th>
-                                                <th>Product Serial No</th>
-                                                <th colspan="4"><asp:Label ID="headop" runat="server" Text="Operator"></asp:Label></th>
+                                                <th>Serial No</th>
+                                                <th>Catogery</th>
+                                                <th>Sub Catogery</th>
+                                                <th colspan="4">
+                                                    <asp:Label ID="headop" runat="server" Text="Operator"></asp:Label></th>
 
                                             </tr>
                             </HeaderTemplate>
@@ -113,7 +72,7 @@
                                         <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Image ID="lblProductImage" runat="server" ImageUrl='<%# Eval("ProductImage1") %>' class="img-size-50 img-circle" style="height:36px; width:36px;" ></asp:Image>
+                                        <asp:Image ID="lblProductImage" runat="server" ImageUrl='<%# Eval("ProductImage1") %>' class="img-size-50 img-circle" Style="height: 36px; width: 36px;"></asp:Image>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
@@ -123,6 +82,12 @@
                                     </td>
                                     <td>
                                         <asp:Label ID="lblSerialNo" runat="server" Text='<%# Eval("SerialNo") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("CatogeryName") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("SubCatogeryName") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblId" runat="server" Text='<%# Eval("id") %>' Visible="false"></asp:Label>
@@ -136,7 +101,8 @@
                                     </td>
                                     <td>
                                         <asp:LinkButton ID="LinkButton2" CommandName="Stock" runat="server">
-                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/AdminModule/dist/img/inventory.png" style="height:35px;width:35px;" /></asp:LinkButton>
+                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/AdminModule/dist/img/inventory.png" Style="height: 35px; width: 35px;" />
+                                        </asp:LinkButton>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -145,6 +111,13 @@
                                             </div></div>
                             </FooterTemplate>
                         </asp:Repeater>
+                        <div style="overflow: hidden;">
+                            <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnPage" CssClass="btn btn-primary" CommandName="Page" CommandArgument="<%# Container.DataItem %>" runat="server" ForeColor="White" Font-Bold="True"><%# Container.DataItem %></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
                         <div class="modal fade  bd-example-modal-sm" id="ProductDetailsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered  modal-xl" role="document">
                                 <div class="modal-content" runat="server" id="divmodel">
@@ -193,36 +166,34 @@
                                                             <asp:Label ID="lblProductId" class="form-control" runat="server" Visible="false"></asp:Label>
                                                         </div>
                                                     </div>
-                                                   
+
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <div class="container">
-                                                        <div id="images-container">
-                                                            <img src="#" class="image image-1" runat="server"  id="image1" alt="Product Image 1" data-active="active">
-                                                            <img src="#" class="image image-2" runat="server"  id="image2" alt="Product Image 2">
-                                                            <img src="#" class="image image-3" runat="server"  id="image3" alt="Product Image 3">
-                                                            <img src="#" class="image image-4" runat="server"  id="image4" alt="Product Image 4">
-                                                            <img src="#" class="image image-5" runat="server"  id="image5" alt="Product Image 5">
-                                                            <img src="#" class="image image-6" runat="server"  id="image6" alt="Product Image 6">
-                                                        </div>
-                                                        <div id="controls-container" style="background-image: url(dist/img/backend.jpg); height: 55px;">
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image1">1</div>
-                                                            </div>
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image2">2</div>
-                                                            </div>
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image3">3</div>
-                                                            </div>
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image4">4</div>
-                                                            </div>
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image5">5</div>
-                                                            </div>
-                                                            <div class="control">
-                                                                <div class="control-btn" data-image="image6">6</div>
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                                <div class="carousel-inner">
+                                                                    <div class="carousel-item active">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image1" alt="Product Image 1" data-active="active" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                    <div class="carousel-item">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image2" alt="Product Image 2" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                    <div class="carousel-item">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image3" alt="Product Image 3" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                    <div class="carousel-item">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image4" alt="Product Image 4" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                    <div class="carousel-item">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image5" alt="Product Image 5" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                    <div class="carousel-item">
+                                                                        <asp:Image class="img-fluid d-block" runat="server" ID="image6" alt="Product Image 6" Style="width: 100%; height: 200px" />
+                                                                    </div>
+                                                                </div>
+                                                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="color: red; background: red; height: 25px; width: 35px; position: absolute; top: 95%"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+                                                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="color: red; background: red; height: 25px; width: 35px; position: absolute; top: 95%"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -241,27 +212,6 @@
                             function ShowPopup() {
                                 $("#ProductDetailsModel").modal("show");
                                 $("#ProductDetailsModel").css('background', 'inherit');
-                            }
-
-
-
-                            var controlsContainer = document.getElementById('controls-container'),
-                                allImages = document.querySelectorAll('.image'),
-                                imagesContainer = document.getElementById('images-container');
-
-
-                            controlsContainer.onclick = function (e) {
-                                debugger
-                                var target = e.target,
-                                    dataTarget = target.getAttribute('data-image'),
-                                    activeImage = document.getElementById(dataTarget);
-
-                                if (dataTarget) {
-                                    for (var i = 0; i < allImages.length; i++) {
-                                        allImages[i].removeAttribute('data-active');
-                                    }
-                                    activeImage.setAttribute('data-active', 'active');
-                                }
                             }
 
                         </script>
@@ -321,4 +271,25 @@
             </div>
         </section>
     </div>
+    <script>
+        function Search_Repeater(strKey) {
+            debugger;
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("myTable");
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
+    </script>
 </asp:Content>

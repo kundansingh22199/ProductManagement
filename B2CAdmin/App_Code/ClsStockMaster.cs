@@ -121,21 +121,7 @@ namespace B2CAdmin.App_Code
             sda.Fill(dt);
             return dt;
         }
-        public DataTable GetStockDataUsingPagnation(int pageIndex, int PageSize)
-        {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetStockPagination", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
-            cmd.Parameters.AddWithValue("@PageSize", PageSize);
-            cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
-            cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
-            con.Close();
-        }
+        
         public DataTable GetStockDataByAllDetails(string ProductCode, decimal PurchasePrice,decimal MrpPrice,decimal SalesPrice,int DiscountType, decimal Discount, int TaxType, string ProductSize )
         {
             try
@@ -174,21 +160,9 @@ namespace B2CAdmin.App_Code
             sda.Fill(dt);
             return dt;
         }
-        public DataTable GetStockByProductCode(string ProductCode)
-        {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetStockByProductCode", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ProductCode", ProductCode);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
-        }
-
 
         public int AddStockData(int Id,string ProductCode,decimal PurchasePrice, decimal MrpPrice, decimal SalesPrice,int ProductQuantity,int DiscountType, decimal Discount,
-            int TaxType, string ProductSize,DateTime MfgDate, DateTime ExpiryDate, int CreateBy, int UpdateBy, string action)
+            int TaxType, string ProductSize,DateTime MfgDate, string ExpiryDate, int CreateBy, int UpdateBy, string action)
         {
             try
             {
@@ -261,22 +235,16 @@ namespace B2CAdmin.App_Code
                 return 0;
             }
         }
-        //public int DeleteStockData(string ProductCode)
-        //{
-        //    try
-        //    {
-        //        SqlConnection con = new SqlConnection(SqlCon);
-        //        SqlCommand cmd = new SqlCommand("SP_DeleteStockByProductCode", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@ProductCode", ProductCode);
-        //        con.Open();
-        //        int result = cmd.ExecuteNonQuery();
-        //        return result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return 0;
-        //    }
-        //}
+        public DataTable SearchStockData(string SearchText)
+        {
+            SqlConnection con = new SqlConnection(SqlCon);
+            SqlCommand cmd = new SqlCommand("SP_SearchStock", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SearchData", SearchText);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt;
+        }
     }
 }

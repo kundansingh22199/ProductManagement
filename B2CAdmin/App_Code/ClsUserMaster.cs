@@ -246,5 +246,23 @@ namespace B2CAdmin.App_Code
                 return 0;
             }
         }
+        public DataTable SearchUserList(string searchText)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_SearchUserData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SearchData", searchText);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
