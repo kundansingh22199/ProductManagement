@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2CAdmin.App_Code;
+using IronBarCode;
+using ZXing;
 
 namespace B2CAdmin.AdminModule
 {
@@ -387,27 +389,25 @@ namespace B2CAdmin.AdminModule
 
         public void generateBarcode()
         {
-            //BarcodeWriter barcodeWriter = new BarcodeWriter();
-            //barcodeWriter.Format = BarcodeFormat.QR_CODE;
+            //string generatebarcode = txtBarCode.Text;
+            //GeneratedBarcode barcode = BarcodeWriter.CreateBarcode(generatebarcode, BarcodeWriterEncoding.Code128);
+            //barcode.ResizeTo(400, 120);
 
-            //// Set optional parameters like width and height
-            //barcodeWriter.Options = new ZXing.Common.EncodingOptions
+            //// Styling a QR code and adding annotation text
+            ////barcode.AddBarcodeValueTextAboveBarcode();
+            //barcode.AddBarcodeValueTextBelowBarcode();
+            //barcode.SetMargins(10);
+            //barcode.ChangeBarCodeColor(Color.BlueViolet);
+
+            //var folder = Server.MapPath("/App_Data/GeneratedBarcodeImage");
+            //if (!Directory.Exists(folder))
             //{
-            //    Width = 300,
-            //    Height = 300
-            //};
-
-            //// Generate the barcode data
-            //string barcodeData = "Hello, World!"; // Your data here
-
-            //// Encode the data into a barcode image
-            //Bitmap barcodeBitmap = barcodeWriter.Write(barcodeData);
-
-            //// Save the barcode image to a file
-            //string fileName = "barcode.png"; // You can change the file name and format as needed
-            //barcodeBitmap.Save(fileName);
-
-            //Console.WriteLine($"Barcode saved as {fileName}");
+            //    Directory.CreateDirectory(folder);
+            //}
+            //string filePath = Server.MapPath("GeneratedBarcodeImage/barcode.png");
+            //barcode.SaveAsPng(filePath);
+            //ImageGeneratedBarcode.ImageUrl = "~/GeneratedBarcodeImage/" + Path.GetFileName(filePath);
+            //ImageGeneratedBarcode.Visible = true;
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

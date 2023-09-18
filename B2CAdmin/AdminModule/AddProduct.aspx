@@ -129,41 +129,42 @@
                                                 <div class="card-body">
                                                     <div class="row" style="width: 100%">
                                                         <div class="col-sm-12">
-                                                            <img src="dist/img/avatar5.png" id="output" style="width: 100%; height: 220px" />
+                                                            <img src="dist/img/avatar5.png" id="output" style="width: 100%; height: 250px;margin-bottom:10px" />
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="input-group-prepend">
-                                                                <asp:FileUpload runat="server" ID="imgupload1" CssClass="form-control border-1 mb-2" onchange="loadFile(event)" />
+                                                                <asp:FileUpload runat="server" ID="imgupload1" CssClass="form-control mb-2 bg-light" onchange="loadFile(event)" />
                                                                 <span class="input-groupt" style="color: red">
                                                                     <b>*</b>
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="input-group-prepend">
-                                                                <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload2" onchange="loadFile(event)" />
+                                                                <asp:FileUpload runat="server" CssClass="form-control mb-2 bg-light" ID="imgupload2" onchange="loadFile(event)" />
                                                                 <span class="input-groupt" style="color: red">
                                                                     <b>*</b>
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload3" onchange="loadFile(event)" />
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload4" onchange="loadFile(event)" />
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload5" onchange="loadFile(event)" />
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <asp:FileUpload runat="server" CssClass="form-control border-1 mb-2" ID="imgupload6" onchange="loadFile(event)" />
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-3">
+                                                <asp:FileUpload runat="server" CssClass="form-control mb-2 bg-light" ID="imgupload3" onchange="loadFile(event)" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <asp:FileUpload runat="server" CssClass="form-control mb-2 bg-light" ID="imgupload4" onchange="loadFile(event)" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <asp:FileUpload runat="server" CssClass="form-control mb-2 bg-light" ID="imgupload5" onchange="loadFile(event)" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <asp:FileUpload runat="server" CssClass="form-control mb-2 bg-light" ID="imgupload6" onchange="loadFile(event)" />
+                                            </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 pt-3">
                                             <asp:Button runat="server" ID="btnSubmit" Text="ADD PRODUCT" class="btn btn-primary mb-2 ml-2" OnClick="btnSubmit_Click" />
                                             <asp:Button runat="server" ID="btnStock" Text="ADD Stock" class="btn btn-warning mb-2 ml-2" Visible="false" OnClick="btnStock_Click" />
                                             <asp:Button runat="server" ID="btnUpdate" Text="UPDATE PRODUCT" class="btn btn-primary mb-2 ml-2" Visible="false" OnClick="btnUpdate_Click" />
