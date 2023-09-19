@@ -161,6 +161,7 @@
     <Content Include="AdminModule\dist\img\inventory.png" />
     <Content Include="AdminModule\Js\validation.js" />
     <Content Include="AdminModule\ProductList.aspx" />
+    <Content Include="AdminModule\Profile.aspx" />
     <Content Include="AdminModule\StockManagement.aspx" />
     <Content Include="AdminModule\UserList.aspx" />
     <Content Include="Default.aspx" />
@@ -2127,6 +2128,13 @@
     </Compile>
     <Compile Include="AdminModule\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminModule\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminModule\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminModule\StockManagement.aspx.cs">
       <DependentUpon>StockManagement.aspx</DependentUpon>

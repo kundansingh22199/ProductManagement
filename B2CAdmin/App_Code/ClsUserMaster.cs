@@ -66,7 +66,7 @@ namespace B2CAdmin.App_Code
         }
         public int InsertUpdateUser(string UserId, string UserName, String MobileNo, string Emailid, string CompanyName,
             string Password, int UserType, string Address, string AadharNo, string PanNo, string GstinNo, string UserImage,
-            string Aadharimage,string AddharImage2, string PancardImage, string StoreName, string BranchDetails, DateTime Dob,int State,int City,int PinCode, int CreateBy, string action)
+            string Aadharimage,string AddharImage2, string PancardImage, string StoreName, string BranchDetails, DateTime Dob,int State,int City,int PinCode,string Gender, int CreateBy, string action)
         {
             try
             {
@@ -95,6 +95,7 @@ namespace B2CAdmin.App_Code
                 cmd.Parameters.AddWithValue("@State", State);
                 cmd.Parameters.AddWithValue("@City", City);
                 cmd.Parameters.AddWithValue("@PinCode", PinCode);
+                cmd.Parameters.AddWithValue("@gender", Gender);
                 cmd.Parameters.AddWithValue("@CreateBy", CreateBy);
                 cmd.Parameters.AddWithValue("@UpdateBy", "");
                 cmd.Parameters.AddWithValue("@Action", action);

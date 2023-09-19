@@ -33,13 +33,14 @@ namespace B2CAdmin.AdminModule
             {
                 DataTable dt = clsUser.UserDetailsById(Id);
                 lblUserName.Text = dt.Rows[0]["UserName"].ToString();
+                lblGender.Text = dt.Rows[0]["gender"].ToString();
                 lblUserId.Text = dt.Rows[0]["UserId"].ToString();
                 lblMobile.Text = dt.Rows[0]["MobileNo"].ToString();
                 lblPassword.Text = dt.Rows[0]["Password"].ToString();
                 lblEmail.Text = dt.Rows[0]["Emailid"].ToString();
                 lblDob.Text = dt.Rows[0]["Dob"].ToString();
                 lblCompany.Text = dt.Rows[0]["CompanyName"].ToString();
-                lblUserType.Text = dt.Rows[0]["UserType"].ToString();
+                lblUserType.Text = dt.Rows[0]["UserTypeName"].ToString();
                 lblAddress.Text = dt.Rows[0]["Address"].ToString();
                 lblGstIn.Text = dt.Rows[0]["GstinNo"].ToString();
                 lblAddharNo.Text = dt.Rows[0]["AadharNo"].ToString();

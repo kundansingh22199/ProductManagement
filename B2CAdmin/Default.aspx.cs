@@ -16,6 +16,7 @@ namespace B2CAdmin
         {
             Session["MobileNo"] = null;
             Session["UserId"] = null;
+            Session["UserType"] = null;
         }
 
         protected void btnSignIn_Click(object sender, EventArgs e)

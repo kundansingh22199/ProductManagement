@@ -41,7 +41,6 @@
                         </div>
                         <div class="input-group mb-3">
                             <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" class="form-control" TextMode="Password"></asp:TextBox>
-                            <%--<input type="password" class="form-control" placeholder="Password">--%>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>

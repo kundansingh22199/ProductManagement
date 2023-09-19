@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2CAdmin.App_Code;
-using IronBarCode;
 using ZXing;
 
 namespace B2CAdmin.AdminModule

@@ -55,6 +55,7 @@ namespace B2CAdmin.AdminModule
                     txtStore.Text = dt.Rows[0]["StoreName"].ToString();
                     txtBranch.Text = dt.Rows[0]["BranchDetails"].ToString();
 
+                    ViewState["UserType"] = dt.Rows[0]["UserType"].ToString();
                     ViewState["UserId"] = dt.Rows[0]["UserId"].ToString();
                     ViewState["UserImage"] = dt.Rows[0]["UserImage"].ToString();
                     ViewState["Aadharimage"] = dt.Rows[0]["Aadharimage"].ToString();
@@ -96,7 +97,7 @@ namespace B2CAdmin.AdminModule
             int userType = Convert.ToInt32(Session["UserType"]);
             DataTable dt = clsUser.GetUserType(userType);
             ddlUserType.DataSource = dt;
-            ddlUserType.DataTextField = "UserType";
+            ddlUserType.DataTextField = "UserTypeName";
             ddlUserType.DataValueField = "Id";
             ddlUserType.DataBind();
 
@@ -267,7 +268,7 @@ namespace B2CAdmin.AdminModule
                     int result = 0;
                     result = clsUser.InsertUpdateUser(User, txtUserName.Text.Trim(), txtMobileNo.Text.Trim(), txtEmail.Text.Trim(), txtCompanyName.Text.Trim(),
                     Password, userType, txtAddress.Text.Trim(), txtAadhar.Text.Trim(), txtPanCard.Text.Trim(), txtGstIn.Text.Trim(), fileName1,
-                    fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, userid, action);
+                    fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, ddlGender.SelectedItem.Text.Trim(), userid, action);
 
                     if (result > 0)
                     {
@@ -404,7 +405,16 @@ namespace B2CAdmin.AdminModule
             if (status == true && count == 0)
             {
                 string User = ViewState["UserId"].ToString();
-                int userType = Convert.ToInt32(ddlUserType.SelectedValue);
+                int userType = 0;
+                if (ddlUserType.SelectedItem.Text.Trim() == "--Select--")
+                {
+                    userType = Convert.ToInt32(ViewState["UserType"]);
+                }
+                else
+                {
+                    userType = Convert.ToInt32(ddlUserType.SelectedValue);
+                }
+                //int userType = 1;
                 int userid = Convert.ToInt32(Session["UserId"]);
                 DateTime Dob = Convert.ToDateTime(txtDob.Text);
 
@@ -417,7 +427,7 @@ namespace B2CAdmin.AdminModule
                 int result = 0;
                 result = clsUser.InsertUpdateUser(User, txtUserName.Text.Trim(), txtMobileNo.Text.Trim(), txtEmail.Text.Trim(), txtCompanyName.Text.Trim(),
                 Password, userType, txtAddress.Text.Trim(), txtAadhar.Text.Trim(), txtPanCard.Text.Trim(), txtGstIn.Text.Trim(), fileName1,
-                fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, userid, action);
+                fileName2, fileName3, fileName4, txtStore.Text.Trim(), txtBranch.Text.Trim(), Dob, State, City, PinCode, ddlGender.SelectedItem.Text.Trim(), userid, action);
 
                 if (result > 0)
                 {

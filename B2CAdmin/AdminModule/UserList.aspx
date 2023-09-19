@@ -68,7 +68,7 @@
                                         <asp:Label ID="lblAmount" runat="server" Text='<%# Eval("UserId") %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblUserType" runat="server" Text='<%# Eval("UserType") %>'></asp:Label>
+                                        <asp:Label ID="lblUserType" runat="server" Text='<%# Eval("UserTypeName") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("MobileNo") %>'></asp:Label>
@@ -116,7 +116,7 @@
                                                 <td><b>User Name :</b><asp:Label ID="lblUserName" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>UserId :</b><asp:Label ID="lblUserId" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>Mobile No :</b><asp:Label ID="lblMobile" class="form-control" runat="server"></asp:Label></td>
-                                                <td><b>Password :</b><asp:Label ID="lblPassword" class="form-control" runat="server"></asp:Label></td>
+                                                <td><b>Gender :</b><asp:Label ID="lblGender" class="form-control" runat="server"></asp:Label></td>
                                             </tr>
                                             <tr style="border: 1px">
                                                 <td><b>Email Id :</b><asp:Label ID="lblEmail" class="form-control" runat="server"></asp:Label></td>
@@ -133,6 +133,7 @@
                                             <tr style="border: 1px">
                                                 <td><b>Branch Details :</b><asp:Label ID="lblBranchDetails" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>Store Name :</b><asp:Label ID="lblStoreName" class="form-control" runat="server"></asp:Label></td>
+                                                <td><b>Password :</b><asp:Label ID="lblPassword" class="form-control" runat="server"></asp:Label></td>
                                                 <td><b>Create Date :</b><asp:Label ID="lblCreateDate" class="form-control" runat="server"></asp:Label></td>
                                             </tr>
                                             <%--<tr style="border: 1px">
@@ -202,6 +203,7 @@
                                             <tr style="background-color: #007bff; color: white">
                                                 <th>SL/NO</th>
                                                 <th>User Name</th>
+                                                <th>Gender</th>
                                                 <th>User Id</th>
                                                 <th>User Type</th>
                                                 <th>Mobile No</th>
@@ -230,6 +232,9 @@
                                     </td>
                                     <td>
                                         <asp:Label ID="lblSchemeName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label18" runat="server" Text='<%# Eval("Gender") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblAmount" runat="server" Text='<%# Eval("UserId") %>'></asp:Label>

@@ -79,6 +79,13 @@
                                         <asp:Label runat="server" ID="Label1">Name<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:TextBox runat="server" ID="txtUserName" placeholder="Enter User Name" class="form-control mb-2"></asp:TextBox>
                                     </div>
+                                    <div class="col-sm-4">
+                                        <asp:Label runat="server" ID="Label2">Gender<span style="color:red"><b>*</b></span></asp:Label>
+                                        <asp:DropDownList ID="ddlGender" class="custom-select form-control-border mb-2" runat="server">
+                                            <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                                            <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
                                     <div class="col-md-4">
                                         <asp:Label runat="server" ID="Label5">User Type<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:DropDownList ID="ddlUserType" class="custom-select form-control-border mb-2" runat="server">
