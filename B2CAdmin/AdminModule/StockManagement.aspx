@@ -63,6 +63,10 @@
                                         <asp:TextBox runat="server" ID="txtProductCode" placeholder="Enter Product Code" class="form-control mb-2" OnTextChanged="txtProductCode_TextChanged" AutoPostBack="true" onkeypress="return isUrlValid(event)"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-4">
+                                        <asp:Label runat="server" ID="Label16">Brand Name<span style="color:red"><b>*</b></span></asp:Label>
+                                        <asp:TextBox runat="server" ID="txtBrand" placeholder="Enter Brand Name" class="form-control mb-2" onkeypress="return isUrlValid(event)"></asp:TextBox>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <asp:Label runat="server" ID="Label4">Product Size<span style="color:red"><b>*</b></span></asp:Label>
                                         <div class="input-group mb-2">
                                             <asp:DropDownList ID="ddlProductSize" class="custom-select form-control-border" runat="server">
@@ -162,7 +166,7 @@
                         </div>
                     </div>
                     <div class="col-md-7 text-right">
-                        <asp:Button runat="server" ID="Button1" CssClass="btn btn-primary" Text="Export In Excel" />
+                        <asp:Button runat="server" ID="btnExcelExport" CssClass="btn btn-primary" Text="Export In Excel" OnClick="btnExcelExport_Click"/>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; width: 100%; overflow-x: scroll;">
@@ -455,6 +459,7 @@
                 }
                 document.getElementById('<%= txtSalesPrice.ClientID %>').readOnly = true
                 document.getElementById('<%= txtProductCode.ClientID %>').readOnly = true
+                document.getElementById('<%= txtBrand.ClientID %>').readOnly = true
             </script>
 
             <script src="jquery-1.10.2.js" type="text/javascript"></script>

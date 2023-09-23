@@ -18,6 +18,7 @@
     <script src="sweet_alert/sweetalert-dev.js"></script>
     <link href="sweet_alert/sweetalert.css" rel="stylesheet" />
     <script src="sweet_alert/sweetalert.min.js"></script>
+
 </head>
 <body class="hold-transition login-page">
     <form id="form1" runat="server">
@@ -28,14 +29,14 @@
                     <a href="Default.aspx" class="h1"><b>Admin</b>WTS</a>
                 </div>
                 <div class="card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
+                    <p class="login-box-msg">Sign In with Phone, Email and UserId</p>
 
                         <div class="input-group mb-3">
-                            <asp:TextBox runat="server" ID="txtUserId" placeholder="Mobile No" class="form-control"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtUserId" placeholder="Enter Phone, Email and UserId" class="form-control"></asp:TextBox>
                             <%--<input type="email" class="form-control" placeholder="Email">--%>
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
+                                    <span class="fas fa-sign-in-alt"></span>
                                 </div>
                             </div>
                         </div>

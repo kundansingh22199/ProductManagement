@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace B2CAdmin.AdminModule
+namespace B2CAdmin.SallerModule
 {
     public partial class Profile : System.Web.UI.Page
     {

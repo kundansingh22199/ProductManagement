@@ -69,6 +69,24 @@ namespace B2CAdmin.AdminModule
         protected global::System.Web.UI.WebControls.TextBox txtProductCode;
 
         /// <summary>
+        /// Label16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+
+        /// <summary>
+        /// txtBrand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBrand;
+
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
@@ -339,13 +357,13 @@ namespace B2CAdmin.AdminModule
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// Button1 control.
+        /// btnExcelExport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnExcelExport;
 
         /// <summary>
         /// Repeater1 control.

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B2CAdmin
+namespace B2CAdmin.SallerModule
 {
 
 
-    public partial class Master
+    public partial class SallerMaster
     {
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -25,7 +26,6 @@ namespace B2CAdmin.AdminModule
                 GetStockLists(0);
                 BindTaxType();
                 GetValueFromQueryString();
-                //this.GetStockDataUsingPagnation(1);
             }
         }
         public void GetValueFromQueryString()
@@ -35,8 +35,15 @@ namespace B2CAdmin.AdminModule
             if (!string.IsNullOrEmpty(idValue))
             {
                 txtProductCode.Text = idValue;
-                int catogeryId = clsStock.GetCatogeryIdByProductCode(idValue);
-                BindProductSize(catogeryId);
+                txtBrand.Text = "";
+                DataTable dt = clsStock.GetCatogeryIdByProductCode(idValue);
+                if (dt.Rows.Count > 0)
+                {
+                    int catogeryId = Convert.ToInt32(dt.Rows[0]["Catogery"]);
+                    int Brand = Convert.ToInt32(dt.Rows[0]["Brand"]);
+                    txtBrand.Text = clsStock.GetBrandName(Brand);
+                    BindProductSize(catogeryId);
+                }
             }
             else
             {
@@ -83,6 +90,7 @@ namespace B2CAdmin.AdminModule
             result = clsStock.AddSizeData(txtProductSize.Text, txtSizeDescription.Text, catogeryId, userid);
             if (result > 0)
             {
+                BindProductSize(catogeryId);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Sub Catogery Added ', 'Sucess')", true);
             }
             else
@@ -92,8 +100,10 @@ namespace B2CAdmin.AdminModule
         }
         protected void txtProductCode_TextChanged(object sender, EventArgs e)
         {
-            int catogeryId = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
+            DataTable dt = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
+            int catogeryId = Convert.ToInt32(dt.Rows[0]["Catogery"]);
             BindProductSize(catogeryId);
+            
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -129,7 +139,7 @@ namespace B2CAdmin.AdminModule
                     }
                     else
                     {
-                        int result = clsStock.AddStockData(Id, txtProductCode.Text.Trim(), PurchasePrice, MrpPrice, SalesPrice, ProductQuantity, DiscountType, Discount,
+                        int result = clsStock.AddStockData(Id, txtProductCode.Text.Trim(),txtBrand.Text.Trim(), PurchasePrice, MrpPrice, SalesPrice, ProductQuantity, DiscountType, Discount,
                             TaxType, ddlProductSize.SelectedValue, MfgDate, ExpiryDate, CreateBy, UpdateBy, action);
                         if (result > 0)
                         {
@@ -203,10 +213,12 @@ namespace B2CAdmin.AdminModule
                 DataTable dt = clsStock.GetStockDataById(Convert.ToInt32(txtId.Text.Trim()));
                 Label txtbox = (Label)e.Item.FindControl("lblProductCode");
                 txtProductCode.Text = txtbox.Text;
-                int catogeryId = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
+                DataTable dtCat = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
+                int catogeryId = Convert.ToInt32(dtCat.Rows[0]["Catogery"]);
                 BindProductSize(catogeryId);
                 ddlProductSize.SelectedValue = dt.Rows[0]["ProductSize"].ToString();
                 txtQuantity.Text = dt.Rows[0]["ProductQuantity"].ToString();
+                txtBrand.Text = dt.Rows[0]["S_Brandname"].ToString();
                 string mfgdate = dt.Rows[0]["MfgDate"].ToString();
                 txtMfgDate.Text = Convert.ToDateTime(mfgdate).ToString("yyyy-MM-dd");
                 string expiryDate = dt.Rows[0]["ExpiryDate"].ToString();
@@ -237,8 +249,9 @@ namespace B2CAdmin.AdminModule
                 {
                     Label txtbox = (Label)e.Item.FindControl("lblProductCode");
                     txtProductCode.Text = txtbox.Text;
-                    int catogeryId = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
-                    BindProductSize(catogeryId);
+                    DataTable dtCat = clsStock.GetCatogeryIdByProductCode(txtProductCode.Text.Trim());
+                    int catogeryId = Convert.ToInt32(dtCat.Rows[0]["Catogery"]);
+                    BindProductSize(catogeryId); ;
                     ddlProductSize.SelectedValue = dt.Rows[0]["ProductSize"].ToString();
                     txtQuantity.Text = dt.Rows[0]["ProductQuantity"].ToString();
                     string mfgdate = dt.Rows[0]["MfgDate"].ToString();
@@ -313,7 +326,7 @@ namespace B2CAdmin.AdminModule
                 if (SalesPrice > PurchasePrice)
                 {
                     int Id = Convert.ToInt32(ViewState["StockId"]);
-                    int result = clsStock.AddStockData(Id, txtProductCode.Text.Trim(), PurchasePrice, MrpPrice, SalesPrice, ProductQuantity, DiscountType, Discount,
+                    int result = clsStock.AddStockData(Id, txtProductCode.Text.Trim(), txtBrand.Text.Trim(), PurchasePrice, MrpPrice, SalesPrice, ProductQuantity, DiscountType, Discount,
                             TaxType, ddlProductSize.SelectedValue, MfgDate, ExpiryDate, CreateBy, UpdateBy, action);
                     if (result > 0)
                     {
@@ -344,7 +357,7 @@ namespace B2CAdmin.AdminModule
         }
         public void Clear()
         {
-            txtProductCode.Text = txtPurchasePrice.Text = txtMrp.Text = txtSalesPrice.Text = txtQuantity.Text = txtDiscount.Text = txtMfgDate.Text = txtExpiryDate.Text = "";
+            txtProductCode.Text = txtBrand.Text = txtPurchasePrice.Text = txtMrp.Text = txtSalesPrice.Text = txtQuantity.Text = txtDiscount.Text = txtMfgDate.Text = txtExpiryDate.Text = "";
             ddlTaxType.SelectedValue = ddlDiscountType.SelectedValue = ddlProductSize.SelectedValue = null;
             lblCgst.Text = lblIgst.Text = lblSgst.Text = "";
         }
@@ -432,6 +445,39 @@ namespace B2CAdmin.AdminModule
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             GetStockLists(0);
+        }
+
+        protected void btnExcelExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt = clsStock.GetStockData();
+            StringBuilder csvData = new StringBuilder();
+
+            // Add column headers
+            csvData.AppendLine("Product Code,Mrp Price,Purchase Price,Sales Price,Discount,ProductQuantity,Size"); // Replace with your column names
+
+            // Iterate through Repeater items and append data
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string ProductCode = dt.Rows[i]["ProductCode"].ToString(); // Replace with the actual control IDs
+                string MrpPrice = dt.Rows[i]["MrpPrice"].ToString();
+                string PurchasePrice = dt.Rows[i]["PurchasePrice"].ToString();
+                string SalesPrice = dt.Rows[i]["SalesPrice"].ToString();
+                string Discount = dt.Rows[i]["Discount"].ToString();
+                string ProductQuantity = dt.Rows[i]["ProductQuantity"].ToString();
+                string Size = dt.Rows[i]["Size"].ToString();
+
+                // Append data to the CSV string
+                csvData.AppendLine($"{ProductCode},{MrpPrice},{PurchasePrice},{SalesPrice},{Discount},{ProductQuantity},{Size}");
+            }
+
+            // Send the data as a CSV file to the client
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment;filename=data.csv");
+            Response.Charset = "";
+            Response.Output.Write(csvData.ToString());
+            Response.End();
         }
     }
 }

@@ -1,20 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminModule/Master.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="B2CAdmin.AdminModule.AddUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--<style type="text/css">
-        .col-md-12 {
-            padding:10px;
-        }
-         .col-md-3{
-             padding:10px;
-         }
-         .col-md-6{
-             padding:10px;
-         }
-         .col-md-4{
-             padding:10px;
-         }
-    </style>--%>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -81,7 +68,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <asp:Label runat="server" ID="Label2">Gender<span style="color:red"><b>*</b></span></asp:Label>
-                                        <asp:DropDownList ID="ddlGender" class="custom-select form-control-border mb-2" runat="server">
+                                        <asp:DropDownList ID="ddlGender" class="custom-select form-control mb-2" runat="server">
                                             <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
                                             <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
                                         </asp:DropDownList>

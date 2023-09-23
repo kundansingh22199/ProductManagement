@@ -25,13 +25,20 @@ namespace B2CAdmin
             //Session["MobileNo"] = txtUserId.Text;
             //Session["UserId"] = "1";
             //Response.Redirect("AdminModule/Dashboard.aspx");
-            DataTable dt = user.UserLogin(txtUserId.Text, txtPassword.Text);
+            DataTable dt = user.UserLogin(txtUserId.Text.Trim(), txtPassword.Text.Trim());
             if (dt != null && dt.Rows.Count > 0)
             {
                 Session["MobileNo"] = txtUserId.Text;
                 Session["UserId"] = dt.Rows[0]["Id"].ToString();
                 Session["UserType"] = dt.Rows[0]["UserType"].ToString();
-                Response.Redirect("AdminModule/Dashboard.aspx");
+                if (Convert.ToInt32(Session["UserType"]) == 1)
+                {
+                    Response.Redirect("AdminModule/Dashboard.aspx");
+                }
+                else
+                {
+                    Response.Redirect("SallerModule/DashBoard.aspx");
+                }
             }
             else
             {

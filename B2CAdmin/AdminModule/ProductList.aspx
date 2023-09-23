@@ -25,16 +25,6 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <%--<div class="col-md-3">
-                        <asp:DropDownList runat="server" ID="ddlSearch" CssClass="form-control">
-                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                            <asp:ListItem Value="ProductName" Text="Product Name"></asp:ListItem>
-                            <asp:ListItem Value="ProductCode" Text="Product Code"></asp:ListItem>
-                            <asp:ListItem Value="SerialNo" Text="Serial No"></asp:ListItem>
-                            <asp:ListItem Value="Catogery" Text="Catogery Name"></asp:ListItem>
-                            <asp:ListItem Value="SubCatogery" Text="SubCatogery Name"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>--%>
                     <div class="col-md-3">
                         <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
                     </div>

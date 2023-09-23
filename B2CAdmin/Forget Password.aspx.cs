@@ -34,7 +34,6 @@ namespace B2CAdmin
             {
                 Response.Write("<script>alert('Password and Confirm Password Not Matched')</script>");
             }
-            
         }
     }
 }

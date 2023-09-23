@@ -9,7 +9,7 @@ namespace B2CAdmin.App_Code
 {
     public class ClsProductMaster:ClsSqlConnection
     {
-        public int AddProductData(string ProductCode,string ProductName,string Catogery,string SubCatogery,string HSNCode,
+        public int AddProductData(string ProductCode,string ProductName,string Catogery,string SubCatogery,string Brand, string HSNCode,
             string ProductDetails,string BarCode, string SerialNo,string OtherDetails, int CreateBy,string Action)
         {
             try
@@ -21,6 +21,7 @@ namespace B2CAdmin.App_Code
                 cmd.Parameters.AddWithValue("@ProductName", ProductName);
                 cmd.Parameters.AddWithValue("@Catogery", Catogery);
                 cmd.Parameters.AddWithValue("@SubCatogery", SubCatogery);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
                 cmd.Parameters.AddWithValue("@HSNCode", HSNCode);
                 cmd.Parameters.AddWithValue("@ProductDetails", ProductDetails);
                 cmd.Parameters.AddWithValue("@BarCode", BarCode);
@@ -41,13 +42,20 @@ namespace B2CAdmin.App_Code
         }
         public DataTable GetCtogeryData()
         {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetCatogeryData", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetCatogeryData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public int AddCatogery(string CatogeryName, string CatogeryDescription, int CreatedBy)
         {
@@ -71,7 +79,6 @@ namespace B2CAdmin.App_Code
             {
                 return 0;
             }
-
         }
 
         public int AddProductImage(int ProductId, string ProductImage1, string ProductImage2, string ProductImage3, string ProductImage4, string ProductImage5, string ProductImage6, int CreatedBy,string Action)
@@ -99,7 +106,6 @@ namespace B2CAdmin.App_Code
             {
                 return 0;
             }
-
         }
         public int AddSubCatogery(string SubCatogeryName, string SubCatogeryDescription, int CatogeryId, int CreatedBy)
         {
@@ -125,37 +131,102 @@ namespace B2CAdmin.App_Code
                 return 0;
             }
         }
+        public int AddBrand(string SubCatogeryName, int CatogeryId, int SubCatogeryId, int CreatedBy)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_InsertUpdateBrandMaster", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BrandName", SubCatogeryName);
+                cmd.Parameters.AddWithValue("@CatogeryId", CatogeryId);
+                cmd.Parameters.AddWithValue("@SubCatogeryId", SubCatogeryId);
+                cmd.Parameters.AddWithValue("@CreateBy", CreatedBy);
+                cmd.Parameters.AddWithValue("@Action", "Insert");
+                cmd.Parameters.AddWithValue("@Id", "");
+                cmd.Parameters.AddWithValue("@UpdateBy", "");
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
         public DataTable GetSubCtogeryData(int CatogeryId)
         {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetSubCatogeryDataByCatogeryId", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CatogeryId", CatogeryId);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetSubCatogeryDataByCatogeryId", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CatogeryId", CatogeryId);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public DataTable GetBrandData(int CatogeryId, int SubCatogeryId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetBrandList", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CatogeryId", CatogeryId);
+                cmd.Parameters.AddWithValue("@SubCatogeryId", SubCatogeryId);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public DataTable ProductListDetails()
         {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetProductListData", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetProductListData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public DataTable ProductListDetailsById(int Id)
         {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetProductListDetailsById", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Id", Id);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetProductListDetailsById", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         //public DataTable ProductImage(int Id)
         //{
@@ -186,34 +257,65 @@ namespace B2CAdmin.App_Code
         }
         public int ProductListDetailsByProductCode(string ProductCode)
         {
-            int ProductId = 0;
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_GetProductIdByProductCode", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ProductCode", ProductCode);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count > 0)
+            try
             {
-                ProductId = Convert.ToInt32(dt.Rows[0]["Id"]);
-                return ProductId;
+                int ProductId = 0;
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetProductIdByProductCode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductCode", ProductCode);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    ProductId = Convert.ToInt32(dt.Rows[0]["Id"]);
+                    return ProductId;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch (Exception)
             {
                 return 0;
             }
         }
         public DataTable SearchProductBySearchText(string SearchText )
         {
-            SqlConnection con = new SqlConnection(SqlCon);
-            SqlCommand cmd = new SqlCommand("SP_SearchProduct", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@SearchData", SearchText);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_SearchProduct", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SearchData", SearchText);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public DataTable ProductListDetailsJoin()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetProductListJoin", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

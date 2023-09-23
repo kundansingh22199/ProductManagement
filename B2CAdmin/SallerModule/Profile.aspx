@@ -1,10 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminModule/Master.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="B2CAdmin.AdminModule.Profile" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SallerModule/SallerMaster.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="B2CAdmin.SallerModule.Profile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="sweet_alert/sweetalert-dev.js"></script>
-    <link href="sweet_alert/sweetalert.css" rel="stylesheet" />
-    <script src="sweet_alert/sweetalert.min.js"></script>
-
     <style>
         body {
             margin-top: 20px;

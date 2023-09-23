@@ -15,7 +15,7 @@ namespace B2CAdmin.AdminModule
     public partial class AddProduct : System.Web.UI.Page
     {
         ClsProductMaster clsProduct = new ClsProductMaster();
-        int minsize = 20 * 1024; int maxsize = 5 * 1024 * 1024;
+        int minsize = 10 * 1024; int maxsize = 5 * 1024 * 1024;
         int fileSize1 = 0, fileSize2 = 0, fileSize3 = 0, fileSize4 = 0, fileSize5 = 0, fileSize6 = 0;
         string fileName1 = "", fileName2 = "", fileName3 = "", fileName4 = "", fileName5 = "", fileName6 = "";
         bool status = true;
@@ -40,9 +40,14 @@ namespace B2CAdmin.AdminModule
                 {
                     txtProductName.Text = dt.Rows[0]["ProductName"].ToString();
                     txtSerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
+                    BindCatogery();
                     ddlProductCatogery.SelectedValue = dt.Rows[0]["Catogery"].ToString();
+                    ddlCatogery.SelectedValue = dt.Rows[0]["Catogery"].ToString();
+                    ddlBrandCatogery.SelectedValue = dt.Rows[0]["Catogery"].ToString();
                     BindSubCatogery();
                     ddlProductSubCatogery.SelectedValue = dt.Rows[0]["SubCatogery"].ToString();
+                    BindDdlBrand(Convert.ToInt32(ddlProductCatogery.SelectedValue),Convert.ToInt32(ddlProductSubCatogery.SelectedValue));
+                    ddlBrand.SelectedValue = dt.Rows[0]["Brand"].ToString();
                     txtHsnCode.Text = dt.Rows[0]["HSNCode"].ToString();
                     txtBarCode.Text = dt.Rows[0]["BarCode"].ToString();
                     txtProductDetails.Text = dt.Rows[0]["ProductDetails"].ToString();
@@ -78,7 +83,7 @@ namespace B2CAdmin.AdminModule
         {
             int userid = Convert.ToInt32(Session["UserId"]);
             int result = 0;
-            result = clsProduct.AddCatogery(txtAddCatogery.Text,txtCatogeryDescription.Text, userid);
+            result = clsProduct.AddCatogery(txtAddCatogery.Text.ToUpper().Trim(),txtCatogeryDescription.Text, userid);
             if (result > 0)
             {
                 BindCatogery();
@@ -102,19 +107,26 @@ namespace B2CAdmin.AdminModule
             ddlCatogery.DataValueField = "Id";
             ddlCatogery.DataBind();
 
+            ddlBrandCatogery.DataSource = dt;
+            ddlBrandCatogery.DataTextField = "CatogeryName";
+            ddlBrandCatogery.DataValueField = "Id";
+            ddlBrandCatogery.DataBind();
+
             ListItem selectItem = new ListItem("--Select--", "Selected");
             selectItem.Selected = true;
             ddlProductCatogery.Items.Insert(0, selectItem);
             ddlCatogery.Items.Insert(0, selectItem);
+            ddlBrandCatogery.Items.Insert(0, selectItem);
         }
         protected void btnAddSubCatogery_Click(object sender, EventArgs e)
         {
             int result = 0;
             int catogeryId = Convert.ToInt32(ddlCatogery.SelectedValue);
             int userid = Convert.ToInt32(Session["UserId"]);
-            result = clsProduct.AddSubCatogery(txtSubCatogery.Text, txtSubCatogeryDescription.Text, catogeryId, userid);
+            result = clsProduct.AddSubCatogery(txtSubCatogery.Text.ToUpper().Trim(), txtSubCatogeryDescription.Text, catogeryId, userid);
             if (result > 0)
             {
+                BindSubCatogery();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Sub Catogery Added ', 'Sucess')", true);
             }
             else
@@ -127,6 +139,45 @@ namespace B2CAdmin.AdminModule
             string productCode = ViewState["ProductCode"].ToString();
             Response.Redirect("StockManagement.aspx?ProductCode=" + productCode + "");
         }
+        public void BindDdlBrand(int CatogeryId, int SubCatogeryId)
+        {
+           
+                DataTable dt = clsProduct.GetBrandData(CatogeryId, SubCatogeryId);
+                ddlBrand.DataSource = dt;
+                ddlBrand.DataTextField = "BrandName";
+                ddlBrand.DataValueField = "Id";
+                ddlBrand.DataBind();
+                ListItem selectItem = new ListItem("--Select--", "Selected");
+                selectItem.Selected = true;
+                ddlBrand.Items.Insert(0, selectItem);
+            
+        }
+
+        protected void btnBrand_Click(object sender, EventArgs e)
+        {
+            int result = 0;
+            int catogeryId = Convert.ToInt32(ddlBrandCatogery.SelectedValue);
+            int SubId = Convert.ToInt32(ddlBrandSubCatogery.SelectedValue);
+            int userid = Convert.ToInt32(Session["UserId"]);
+            result = clsProduct.AddBrand(txtBrand.Text.ToUpper().Trim(), catogeryId, SubId, userid);
+            if (result > 0)
+            {
+                BindDdlBrand(catogeryId,SubId);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Sub Catogery Added ', 'Sucess')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
+            }
+        }
+
+        protected void ddlBrandCatogery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int catogeryId = Convert.ToInt32(ddlBrandCatogery.SelectedValue);
+            BindBrandSubCatogery(catogeryId);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowBrandPopup();", true);
+        }
+
         protected void ddlProductCatogery_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlProductCatogery.SelectedValue == "Selected")
@@ -141,6 +192,15 @@ namespace B2CAdmin.AdminModule
             }
             
         }
+
+        protected void ddlProductSubCatogery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int CatogeryId = Convert.ToInt32(ddlProductCatogery.SelectedValue);
+            int SubCatogeryId = Convert.ToInt32(ddlProductSubCatogery.SelectedValue);
+            BindDdlBrand(CatogeryId, SubCatogeryId);
+        }
+
         public void BindSubCatogery()
         {
             int catogeryId = Convert.ToInt32(ddlProductCatogery.SelectedValue);
@@ -153,6 +213,18 @@ namespace B2CAdmin.AdminModule
             ListItem selectItem = new ListItem("--Select--", "Selected");
             selectItem.Selected = true;
             ddlProductSubCatogery.Items.Insert(0, selectItem);
+        }
+        public void BindBrandSubCatogery(int catogeryId)
+        {
+            DataTable dt = clsProduct.GetSubCtogeryData(catogeryId);
+            ddlBrandSubCatogery.DataSource = dt;
+            ddlBrandSubCatogery.DataTextField = "SubCatogeryName";
+            ddlBrandSubCatogery.DataValueField = "Id";
+            ddlBrandSubCatogery.DataBind();
+
+            ListItem selectItem = new ListItem("--Select--", "Selected");
+            selectItem.Selected = true;
+            ddlBrandSubCatogery.Items.Insert(0, selectItem);
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -309,7 +381,7 @@ namespace B2CAdmin.AdminModule
                 }
                 string Action = "Insert";
                 result = clsProduct.AddProductData(productCode, txtProductName.Text.Trim(), ddlProductCatogery.SelectedValue, ddlProductSubCatogery.SelectedValue,
-                    txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
+                    ddlBrand.SelectedValue,txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
                     txtSerialNo.Text.Trim(), otherDetails, userid, Action);
 
                 int ProductId = clsProduct.ProductListDetailsByProductCode(productCode);
@@ -377,7 +449,7 @@ namespace B2CAdmin.AdminModule
         public void Clear()
         {
             txtProductName.Text = txtSerialNo.Text = txtHsnCode.Text = txtBarCode.Text = txtProductDetails.Text = txtOtherDetails.Text = "";
-            ddlProductCatogery.SelectedValue = ddlProductSubCatogery.SelectedValue = null;
+            ddlProductCatogery.SelectedValue = ddlProductSubCatogery.SelectedValue=ddlBrand.SelectedValue = null;
             imgupload1.Dispose();
             imgupload2.Dispose();
             imgupload3.Dispose();
@@ -566,7 +638,7 @@ namespace B2CAdmin.AdminModule
                 int userid = Convert.ToInt32(Session["UserId"]);
                 string Action = "Update";
                 result = clsProduct.AddProductData(productCode, txtProductName.Text.Trim(), ddlProductCatogery.SelectedValue, ddlProductSubCatogery.SelectedValue,
-                    txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
+                    ddlBrand.SelectedValue, txtHsnCode.Text.Trim(), txtProductDetails.Text.Trim(), txtBarCode.Text.Trim(),
                     txtSerialNo.Text.Trim(), otherDetails, userid, Action);
 
                 int ProductId = clsProduct.ProductListDetailsByProductCode(productCode);

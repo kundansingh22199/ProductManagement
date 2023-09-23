@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B2CAdmin.AdminModule
+namespace B2CAdmin.SallerModule
 {
 
 
