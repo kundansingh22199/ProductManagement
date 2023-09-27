@@ -182,7 +182,7 @@
                                             <th>Sales Price</th>
                                             <th>Quantity</th>
                                             <th>Product Size</th>
-                                            <th colspan="4">Operator</th>
+                                            <th colspan="4">Action</th>
                                         </tr>
                                     </thead>
                                 </HeaderTemplate>

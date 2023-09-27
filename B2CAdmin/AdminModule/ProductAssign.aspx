@@ -51,7 +51,7 @@
                                             <th>TotalPrice</th>
                                             <th>Status</th>
                                             <th>OrderDate</th>
-                                            <th colspan="3">Operator</th>
+                                            <th colspan="3">Action</th>
                                         </tr>
                                     </thead>
                             </HeaderTemplate>

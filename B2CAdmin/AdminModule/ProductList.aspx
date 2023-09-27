@@ -53,7 +53,7 @@
                                                 <th>Catogery</th>
                                                 <th>Sub Catogery</th>
                                                 <th colspan="4">
-                                                    <asp:Label ID="headop" runat="server" Text="Operator"></asp:Label></th>
+                                                    <asp:Label ID="headop" runat="server" Text="Action"></asp:Label></th>
 
                                             </tr>
                             </HeaderTemplate>

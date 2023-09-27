@@ -62,7 +62,7 @@
                                             <th>Sales Price</th>
                                             <th>Discount(%/RS)</th>
                                             <th>Tax(%)</th>
-                                            <th>Operator</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                             </HeaderTemplate>
@@ -103,11 +103,6 @@
                                             <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
                                             <asp:LinkButton ID="linkDetails" CommandName="Order" runat="server" CssClass="text-primary"><i class="fa fa-shopping-cart fa-xl" aria-hidden="true" style="font-size:30px"></i> </asp:LinkButton>
                                         </td>
-                                        <%--<td>
-                                            <asp:LinkButton ID="LinkButton2" CommandName="Cancle" runat="server" CssClass="text-primary" OnClientClick="return confirm('Are you sure you want to Cancle this Order?');">
-                                                <i class="fas fa-times-circle fa-xl" aria-hidden="true" style="font-size:30px"></i>
-                                            </asp:LinkButton>
-                                        </td>--%>
                                     </tr>
                                 </tbody>
                             </ItemTemplate>

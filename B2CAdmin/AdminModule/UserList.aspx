@@ -50,7 +50,7 @@
                                                 <th>User Type</th>
                                                 <th>Mobile No</th>
                                                 <th>Email-Id</th>
-                                                <th colspan="3">Operator</th>
+                                                <th colspan="3">Action</th>
                                             </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
