@@ -47,6 +47,7 @@
                                                     <asp:Label ID="headsl" runat="server" Text="SL/NO"></asp:Label></th>
                                                 <th>Product Image</th>
                                                 <th>Product Code</th>
+                                                <th>Brand</th>
                                                 <th>Product Name</th>
                                                 <th>Serial No</th>
                                                 <th>Catogery</th>
@@ -66,6 +67,9 @@
                                     </td>
                                     <td>
                                         <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("BrandName") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>

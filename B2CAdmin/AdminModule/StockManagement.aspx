@@ -176,6 +176,7 @@
                                         <tr style="background-color: #007bff; color: white">
                                             <th>SL/NO</th>
                                             <th>Product Code</th>
+                                            <th>Brand</th>
                                             <th>Name</th>
                                             <th>MRP Price</th>
                                             <th>Sales Price</th>
@@ -186,13 +187,16 @@
                                     </thead>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"  style="font-size:90%">
                                         <tr>
                                             <td>
                                                 <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
                                             </td>
                                             <td>
                                                 <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="Label17" runat="server" Text='<%# Eval("S_BrandName") %>'></asp:Label>
                                             </td>
                                             <td>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>

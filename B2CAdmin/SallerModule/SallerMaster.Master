@@ -218,10 +218,33 @@
                                 </ul>
                             </li>
                             <li class="nav-item user-panel ">
-                                <a href="" class="nav-link">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Order Management
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="OrderLists.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Order List</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="OrderLists.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Refund Order</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item user-panel ">
+                                <a href="SellarStock.aspx" class="nav-link">
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
-                                        Product Assign
+                                        Stock Manage
                                     </p>
                                 </a>
                             </li>
@@ -246,7 +269,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>
-                                        Reports
+                                        Customer
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -254,25 +277,13 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Product Report</p>
+                                            <p>Add Customer</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Saller Report</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Sales Report</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Stock Report</p>
+                                            <p>Customer List</p>
                                         </a>
                                     </li>
                                 </ul>

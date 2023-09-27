@@ -14,7 +14,7 @@ namespace B2CAdmin.SallerModule
     {
         ClsUserMaster clsUser = new ClsUserMaster();
         ClsProfileMaster clsProfile = new ClsProfileMaster();
-        int minsize = 20 * 1024; int maxsize = 3 * 1024 * 1024;
+        int minsize = 10 * 1024; int maxsize = 3 * 1024 * 1024;
         int fileSize1 = 0;
         string fileName1 = "";
         bool status = true;

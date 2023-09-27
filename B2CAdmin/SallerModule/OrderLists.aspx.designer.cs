@@ -7,12 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B2CAdmin.AdminModule
+namespace B2CAdmin.SallerModule
 {
 
 
-    public partial class ProductAssign
+    public partial class OrderLists
     {
+
+        /// <summary>
+        /// ddlCatogery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCatogery;
+
+        /// <summary>
+        /// ddlSubCatogery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubCatogery;
 
         /// <summary>
         /// txtSearch control.
@@ -76,14 +94,5 @@ namespace B2CAdmin.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancle;
-
-        /// <summary>
-        /// btnSucess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSucess;
     }
 }

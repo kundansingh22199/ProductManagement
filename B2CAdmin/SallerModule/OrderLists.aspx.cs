@@ -1,20 +1,19 @@
-﻿using B2CAdmin.App_Code;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using B2CAdmin.App_Code;
+using System.Drawing;
 using System.Web.UI.WebControls;
 
-namespace B2CAdmin.AdminModule
+namespace B2CAdmin.SallerModule
 {
-    public partial class ProductAssign : System.Web.UI.Page
+    public partial class OrderLists : System.Web.UI.Page
     {
-        ClsOrderMaster clsOrder = new ClsOrderMaster();
-        ClsStockMaster clsStock = new ClsStockMaster();
+        ClsOrderMaster clsOrder=new ClsOrderMaster();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,7 +25,8 @@ namespace B2CAdmin.AdminModule
         {
             try
             {
-                DataTable dt = clsOrder.GetOrderList();
+                string OrderBy = Session["UserId"].ToString();
+                DataTable dt = clsOrder.GetOrderListByOrderId(OrderBy);
                 if (dt.Rows.Count > 0)
                 {
                     PagedDataSource pgitems = new PagedDataSource();
@@ -86,34 +86,12 @@ namespace B2CAdmin.AdminModule
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName == "Details")
-            {
-
-            }
-            else if (e.CommandName == "Approved")
-            {
-                Label lblStatus = e.Item.FindControl("lblStatus") as Label;
-                ViewState["Status"] = lblStatus.Text;
-                Label lblStockId = e.Item.FindControl("lblStockId") as Label;
-                ViewState["StockId"] = lblStockId.Text;
-                Label lblQuantity = e.Item.FindControl("lblQuantity") as Label;
-                ViewState["OrderQuantity"] = lblQuantity.Text;
-                Label lblOrderBy = e.Item.FindControl("lblOrderBy") as Label;
-                ViewState["OrderBy"] = lblOrderBy.Text;
-                ViewState["Id"] = e.CommandArgument;
-                msg.InnerText = "Are You Sure? To Confirm This Order";
-                btnSucess.Visible = true;
-                btnCancle.Visible = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
-            }
-            else if (e.CommandName == "Reject")
+            if (e.CommandName == "Cancle")
             {
                 Label lblStatus = e.Item.FindControl("lblStatus") as Label;
                 ViewState["Status"] = lblStatus.Text;
                 ViewState["Id"] = e.CommandArgument;
                 msg.InnerText = "Are You Sure? To Cancle This Order";
-                btnSucess.Visible = false;
-                btnCancle.Visible = true;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
         }
@@ -123,17 +101,29 @@ namespace B2CAdmin.AdminModule
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Label lblStatus = e.Item.FindControl("lblStatus") as Label;
+                Label btnPanding = e.Item.FindControl("btnPanding") as Label;
+                Label btnSuccess = e.Item.FindControl("btnSuccess") as Label;
+                Label btnReject = e.Item.FindControl("btnReject") as Label;
                 if (lblStatus.Text.ToLower() == "pending")
                 {
-                    lblStatus.BackColor = Color.FromArgb(230, 134, 19);
+                    //lblStatus.ForeColor = Color.FromArgb(247,203,115);
+                    btnPanding.Visible = true;
+                    btnSuccess.Visible = false;
+                    btnReject.Visible = false;
                 }
                 else if (lblStatus.Text.ToLower() == "approved")
                 {
-                    lblStatus.BackColor = Color.Green;
+                    //lblStatus.ForeColor = Color.Green;
+                    btnSuccess.Visible = true;
+                    btnReject.Visible = false;
+                    btnPanding.Visible = false;
                 }
                 else
                 {
-                    lblStatus.BackColor = Color.Red;
+                    //lblStatus.ForeColor = Color.Red;
+                    btnReject.Visible = true;
+                    btnPanding.Visible = false;
+                    btnSuccess.Visible = false;
                 }
             }
         }
@@ -148,7 +138,7 @@ namespace B2CAdmin.AdminModule
                 msg.InnerText = "Approved Status Can Not be Cancalled";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
-            else if (Status.ToLower() == "cancle")
+            else if(Status.ToLower() == "cancle")
             {
                 msg.InnerText = "Order Already Cancle Cancalled";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
@@ -164,55 +154,6 @@ namespace B2CAdmin.AdminModule
                 {
 
                 }
-            }
-        }
-
-        protected void btnSucess_Click(object sender, EventArgs e)
-        {
-            string Status = ViewState["Status"].ToString();
-            if (Status.ToLower() == "approved")
-            {
-                msg.InnerText = "Already Approved";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
-            }
-            else if (Status.ToLower() == "pending")
-            {
-                int Id = Convert.ToInt32(ViewState["Id"]);
-                string userId = Session["UserId"].ToString();
-                int userIdInt = Convert.ToInt32(userId);
-                int StockId = Convert.ToInt32(ViewState["StockId"]);
-                int OrderBy = Convert.ToInt32(ViewState["OrderBy"]);
-                DataTable dt = clsStock.GetStockDataById(StockId);
-                if (dt.Rows.Count > 0)
-                {
-                    int quantity = Convert.ToInt32(dt.Rows[0]["ProductQuantity"]);
-                    decimal Price = Convert.ToDecimal(dt.Rows[0]["SalesPrice"]);
-                    int orderQuantity = Convert.ToInt32(ViewState["OrderQuantity"]);
-                    if (quantity >= orderQuantity)
-                    {
-                        int AvilableQuantity = quantity - orderQuantity;
-                        int result = clsStock.UpdateStockById(AvilableQuantity, userIdInt, StockId);
-                        if (result > 0)
-                        {
-                            int result1 = clsOrder.UpdateOrderStatus(Id, "Approved", userId);
-                            int result2 = clsOrder.InsertSallerStock(StockId, OrderBy, orderQuantity, Price);
-                            BindOrderLists(0);
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-            else
-            {
-                msg.InnerText = "This Order Can Not be Approved";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
         }
     }

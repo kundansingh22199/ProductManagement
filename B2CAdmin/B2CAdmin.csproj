@@ -158,7 +158,6 @@
     <Content Include="AdminModule\build\npm\Publish.js" />
     <Content Include="AdminModule\build\npm\vnu-jar.js" />
     <Content Include="AdminModule\Dashboard.aspx" />
-    <Content Include="AdminModule\Dashboard2.aspx" />
     <Content Include="AdminModule\dist\img\backend.jpg" />
     <Content Include="AdminModule\dist\img\inventory.png" />
     <Content Include="AdminModule\Js\validation.js" />
@@ -2092,8 +2091,10 @@
     <Content Include="Forget Password.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="SallerModule\DashBoard.aspx" />
+    <Content Include="SallerModule\OrderLists.aspx" />
     <Content Include="SallerModule\ProductList.aspx" />
     <Content Include="SallerModule\Profile.aspx" />
+    <Content Include="SallerModule\SellarStock.aspx" />
     <Content Include="sweet_alert\sweetalert-dev.js" />
     <Content Include="sweet_alert\sweetalert.css" />
     <Content Include="sweet_alert\sweetalert.min.js" />
@@ -2120,13 +2121,6 @@
     </Compile>
     <Compile Include="AdminModule\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminModule\Dashboard2.aspx.cs">
-      <DependentUpon>Dashboard2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminModule\Dashboard2.aspx.designer.cs">
-      <DependentUpon>Dashboard2.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminModule\ProductAssign.aspx.cs">
       <DependentUpon>ProductAssign.aspx</DependentUpon>
@@ -2163,6 +2157,7 @@
     <Compile Include="AdminModule\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\ClsOrderMaster.cs" />
     <Compile Include="App_Code\ClsProductMaster.cs" />
     <Compile Include="App_Code\ClsProfileMaster.cs" />
     <Compile Include="App_Code\ClsSqlConnection.cs" />
@@ -2204,6 +2199,13 @@
     <Compile Include="SallerModule\DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SallerModule\OrderLists.aspx.cs">
+      <DependentUpon>OrderLists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerModule\OrderLists.aspx.designer.cs">
+      <DependentUpon>OrderLists.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SallerModule\ProductList.aspx.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2224,6 +2226,13 @@
     </Compile>
     <Compile Include="SallerModule\SallerMaster.Master.designer.cs">
       <DependentUpon>SallerMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SallerModule\SellarStock.aspx.cs">
+      <DependentUpon>SellarStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerModule\SellarStock.aspx.designer.cs">
+      <DependentUpon>SellarStock.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

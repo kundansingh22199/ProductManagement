@@ -358,5 +358,25 @@ namespace B2CAdmin.App_Code
                 throw;
             }
         }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public DataTable GetSallerStockList(string SallerId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetSallerStock", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SallerId", SallerId);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
