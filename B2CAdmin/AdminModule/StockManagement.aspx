@@ -158,7 +158,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtSearch" placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
                     </div>
                     <div class="col-md-2">
                         <div class="input-group mb-2">
@@ -166,73 +166,75 @@
                         </div>
                     </div>
                     <div class="col-md-7 text-right">
-                        <asp:Button runat="server" ID="btnExcelExport" CssClass="btn btn-primary" Text="Export In Excel" OnClick="btnExcelExport_Click"/>
+                        <asp:Button runat="server" ID="btnExcelExport" CssClass="btn btn-primary" Text="Export In Excel" OnClick="btnExcelExport_Click" />
                     </div>
                     <div class="col-md-12">
-                        <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; width: 100%; overflow-x: scroll;">
-                            <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
-                                <HeaderTemplate>
-                                    <thead>
-                                        <tr style="background-color: #007bff; color: white">
-                                            <th>SL/NO</th>
-                                            <th>Product Code</th>
-                                            <th>Brand</th>
-                                            <th>Name</th>
-                                            <th>MRP Price</th>
-                                            <th>Sales Price</th>
-                                            <th>Quantity</th>
-                                            <th>Product Size</th>
-                                            <th colspan="4">Action</th>
-                                        </tr>
-                                    </thead>
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"  style="font-size:90%">
-                                        <tr>
-                                            <td>
-                                                <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="Label17" runat="server" Text='<%# Eval("S_BrandName") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="Label28" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="lblSalesPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SalesPrice")) %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <asp:LinkButton ID="LinkButton1" CommandName="Stock" runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
-                                            </td>
-                                            <td>
-                                                <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
-                                                <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
-                                            </td>
-                                            <td>
-                                                <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
-                                            </td>
-                                            <td>
-                                                <asp:LinkButton ID="LinkButton2" CommandName="Delete" runat="server" OnClientClick="return confirm('Are you sure, you want to delete this Stock?');"><i class="fas fa-trash fa-xl" style="font-size:25px"></i> </asp:LinkButton>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                </FooterTemplate>
-                            </asp:Repeater>
-                        </table>
+                        <div class="table-responsive" style="height: 400px; width: 100%; overflow: scroll;">
+                            <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; overflow: scroll; width: max-content;">
+                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                                    <HeaderTemplate>
+                                        <thead>
+                                            <tr style="background-color: #007bff; color: white">
+                                                <th>SL/NO</th>
+                                                <th>Product Code</th>
+                                                <th>Brand</th>
+                                                <th>Name</th>
+                                                <th>MRP Price</th>
+                                                <th>Sales Price</th>
+                                                <th>Quantity</th>
+                                                <th>Product Size</th>
+                                                <th colspan="4">Action</th>
+                                            </tr>
+                                        </thead>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" style="font-size: 90%">
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label17" runat="server" Text='<%# Eval("S_BrandName") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label15" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label28" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblSalesPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SalesPrice")) %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductQuantity" runat="server" Text='<%# Eval("ProductQuantity") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="LinkButton1" CommandName="Stock" runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>' Visible="false"></asp:Label>
+                                                    <asp:LinkButton ID="linkDetails" CommandName="Details" runat="server"><i class="fa fa-eye fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="linkUpdate" CommandName="Update" runat="server"><i class="fas fa-edit fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:LinkButton ID="LinkButton2" CommandName="Delete" runat="server" OnClientClick="return confirm('Are you sure, you want to delete this Stock?');"><i class="fas fa-trash fa-xl" style="font-size:25px"></i> </asp:LinkButton>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </table>
+                        </div>
                         <div style="overflow: hidden;">
                             <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
                                 <ItemTemplate>

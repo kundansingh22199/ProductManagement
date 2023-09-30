@@ -250,14 +250,6 @@
                                 </ul>
                             </li>
                             <li class="nav-item user-panel ">
-                                <a href="ProductAssign.aspx" class="nav-link">
-                                    <i class="nav-icon far fa-image"></i>
-                                    <p>
-                                        Product Assign
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item user-panel ">
                                 <a href="StockManagement.aspx" class="nav-link">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
@@ -266,23 +258,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item user-panel ">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-tree"></i>
-                                    <p>
-                                        Sales
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Point of Sales</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                             <li class="nav-item user-panel ">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
@@ -319,13 +295,28 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-header">EXAMPLES</li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-image"></i>
+                            <li class="nav-header">Sellar </li>
+                            <li class="nav-item user-panel ">
+                                <a href="ProductAssign.aspx" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
                                     <p>
-                                        Store
+                                        Product Assign
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item user-panel ">
+                                <a href="TotalSales.aspx" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Total Sales
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item user-panel ">
+                                <a href="CustomerList.aspx" class="nav-link">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        Customer
                                     </p>
                                 </a>
                             </li>

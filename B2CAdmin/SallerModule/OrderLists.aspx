@@ -24,34 +24,60 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
-                        <asp:DropDownList runat="server" ID="ddlCatogery" CssClass="form-control" AutoPostBack="true">
+                    <div class="col-md-2 mb-2">
+                        Select Status
+                        <asp:DropDownList runat="server" ID="ddlStatus" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged">
+                            <asp:ListItem Value="All" Text="ALL"></asp:ListItem>
+                            <asp:ListItem Value="Pending" Text="PENDING"></asp:ListItem>
+                            <asp:ListItem Value="Approved" Text="APPROVED"></asp:ListItem>
+                            <asp:ListItem Value="Cancle" Text="CANCLE"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-2">
-                        <asp:DropDownList runat="server" ID="ddlSubCatogery" CssClass="form-control" AutoPostBack="true">
+                    <div class="col-md-2 mb-2">
+                        Select SearchBy
+                        <asp:DropDownList runat="server" ID="ddlSearch" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearch_SelectedIndexChanged">
+                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                            <asp:ListItem Value="ByCatogery" Text="Catogery Name"></asp:ListItem>
+                            <asp:ListItem Value="BySubCatogery" Text="Sub Catogery Name"></asp:ListItem>
+                            <asp:ListItem Value="ByDate" Text="Search By Date"></asp:ListItem>
+                            <asp:ListItem Value="ByBrand" Text="Brand Name"></asp:ListItem>
+                            <asp:ListItem Value="ByProductName" Text="Product Name"></asp:ListItem>
+                            <asp:ListItem Value="ByProductCode" Text="Product Code"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-2">
-                        <asp:TextBox runat="server" ID="txtSearch" placeholder="Search Here....!!" class="form-control" AutoPostBack="true"></asp:TextBox>
+                    <div class="col-md-2 mb-2" runat="server" id="divDate1" visible="false">
+                        From 
+                        <asp:TextBox runat="server" ID="txtfromDate" TextMode="Date" class="form-control"></asp:TextBox>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 mb-2" runat="server" id="divDate2" visible="false">
+                        To
+                        <asp:TextBox runat="server" ID="txtoDate" TextMode="Date" class="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2 mb-2" runat="server" id="divText">
+                        Enter Search Text
+                        <asp:TextBox runat="server" ID="txtsearch" class="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2 mb-2">
                         <div class="input-group mb-2">
-                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" />
+                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click"/>
                         </div>
-                    </div>
-                    <div class="col-md-4 text-right">
-                        <asp:Button runat="server" ID="btnExportInExcel" CssClass="btn btn-primary" Text="Export to excel" />
                     </div>
                     <div class="col-md-12">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand" OnItemDataBound="Repeater1_ItemDataBound">
                             <HeaderTemplate>
-                                <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow-x: scroll; width: 100%">
+                                <div class="table-responsive" style="height: 400px; width:100%; overflow: scroll;">
+                                <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow-x: scroll; width: max-content">
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th>SL/NO</th>
                                             <th>PaymentReceipt</th>
                                             <th>Payment Mode</th>
+                                            <th>Product Code</th>
+                                            <th>Catogery</th>
+                                            <th>SubCatogery</th>
+                                            <th>Brand</th>
+                                            <th>Product Name</th>
+                                            <th>Size</th>
                                             <th>OrderId</th>
                                             <th>Quantity</th>
                                             <th>Price</th>
@@ -63,7 +89,7 @@
                                     </thead>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <tbody>
+                                <tbody style="font-size:80%">
                                     <tr>
                                         <td>
                                             <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
@@ -73,6 +99,24 @@
                                         </td>
                                         <td>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Eval("PaymentMode") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("CatogeryName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("SubCatogeryName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("S_Brandname") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label9" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label10" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("OrderId") %>'></asp:Label>
@@ -103,6 +147,7 @@
                             </ItemTemplate>
                             <FooterTemplate>
                                 </table>
+                                </div>
                             </FooterTemplate>
                         </asp:Repeater>
                         <div style="overflow: hidden;">
@@ -118,19 +163,39 @@
             </div>
         </section>
     </div>
-    <div id="ConformationModel" class="modal fade" role="dialog">
+    <div id="AlertModel" class="modal fade" role="dialog">
         <div class="modal-dialog modal-sm ">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger">
                     <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size:30px"></i></p>
                     <h6 runat="server" id="msg" class="text-danger"></h6>
                 </div>
                 <div class="modal-footer">
                     <asp:Button runat="server" ID="btnCancle" class="btn btn-danger" Text="Cancle" OnClick="btnCancle_Click" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ConformationModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size:30px"></i>
+                    </p>
+                    <div runat="server" id="msgsuccess" class="text-success text-center"></div>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

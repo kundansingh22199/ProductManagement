@@ -7,21 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B2CAdmin.SallerModule
+namespace B2CAdmin.AdminModule
 {
 
 
-    public partial class OrderLists
+    public partial class TotalSales
     {
-
-        /// <summary>
-        /// ddlStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
         /// ddlSearch control.
@@ -114,30 +105,57 @@ namespace B2CAdmin.SallerModule
         protected global::System.Web.UI.WebControls.Repeater rptPaging;
 
         /// <summary>
-        /// msg control.
+        /// image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl msg;
+        protected global::System.Web.UI.WebControls.Image image1;
 
         /// <summary>
-        /// btnCancle control.
+        /// image2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancle;
+        protected global::System.Web.UI.WebControls.Image image2;
 
         /// <summary>
-        /// msgsuccess control.
+        /// image3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl msgsuccess;
+        protected global::System.Web.UI.WebControls.Image image3;
+
+        /// <summary>
+        /// image4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image image4;
+
+        /// <summary>
+        /// image5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image image5;
+
+        /// <summary>
+        /// image6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image image6;
     }
 }

@@ -360,14 +360,16 @@ namespace B2CAdmin.App_Code
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public DataTable GetSallerStockList(string SallerId)
+        public DataTable GetSallerStockListSearch(string SallerId, string SearchData, string Action)
         {
             try
             {
                 SqlConnection con = new SqlConnection(SqlCon);
-                SqlCommand cmd = new SqlCommand("SP_GetSallerStock", con);
+                SqlCommand cmd = new SqlCommand("SP_SearchSellarStockData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SallerId", SallerId);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -376,6 +378,48 @@ namespace B2CAdmin.App_Code
             catch (Exception)
             {
                 throw;
+            }
+        }
+        public DataTable GetSallerStockListBySalesPriceSearch(string SallerId, string SearchData, string Action)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_SearchSalesListData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SallerId", SallerId);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public int SetSellingPrice(int Id, decimal SellingPrice,decimal Product_Price, decimal DiscountValue, int Discount_Type)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_SetSellarSellingPrice", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
+                cmd.Parameters.AddWithValue("@Product_Price", Product_Price);
+                cmd.Parameters.AddWithValue("@DiscountValue", DiscountValue);
+                cmd.Parameters.AddWithValue("@Discount_Type", Discount_Type);
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                return result;
+            }
+            catch (Exception)
+            {
+                return 0;
             }
         }
     }

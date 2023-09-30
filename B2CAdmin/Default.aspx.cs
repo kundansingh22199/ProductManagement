@@ -30,7 +30,6 @@ namespace B2CAdmin
             {
                 Session["MobileNo"] = txtUserId.Text;
                 Session["UserId"] = dt.Rows[0]["Id"].ToString();
-                Session["User"] = dt.Rows[0]["UserId"].ToString();
                 Session["UserType"] = dt.Rows[0]["UserType"].ToString();
                 if (Convert.ToInt32(Session["UserType"]) == 1)
                 {

@@ -26,7 +26,6 @@ namespace B2CAdmin.SallerModule
             if (!IsPostBack)
             {
                 ProductLists(0);
-                BindCatogery();
                 GetValueFromQueryString();
             }
         }
@@ -64,23 +63,12 @@ namespace B2CAdmin.SallerModule
         {
             try
             {
-                DataTable dt = clsProduct.ProductListDetailsJoin();
-                if (dt.Rows.Count > 0)
+                DataTable dt = clsProduct.SearchSallerProductByAction(txtSearch.Text.Trim(), ddlSearch.SelectedValue);
+                if (dt.Rows.Count > 0 && dt != null)
                 {
                     PagedDataSource pgitems = new PagedDataSource();
-                    if (txtSearch.Text.Trim() == "")
-                    {
-                        pgitems.DataSource = dt.DefaultView;
-                        pgitems.AllowPaging = true;
-                    }
-                    else
-                    {
-                        DataTable dt1 = clsProduct.SearchProductBySearchText(txtSearch.Text.Trim());
-                        pgitems.DataSource = dt1.DefaultView;
-                        pgitems.AllowPaging = true;
-                    }
-
-                    //control page size from here 
+                    pgitems.AllowPaging = true;
+                    pgitems.DataSource = dt.DefaultView;
                     pgitems.PageSize = 5;
                     pgitems.CurrentPageIndex = pagenumber;
                     if (pgitems.PageCount > 1)
@@ -123,36 +111,44 @@ namespace B2CAdmin.SallerModule
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-
+            ProductLists(0);
         }
-        public void BindCatogery()
-        {
-            DataTable dt = clsProduct.GetCtogeryData();
-            ddlCatogery.DataSource = dt;
-            ddlCatogery.DataTextField = "CatogeryName";
-            ddlCatogery.DataValueField = "Id";
-            ddlCatogery.DataBind();
+        //public void BindCatogery()
+        //{
+        //    DataTable dt = clsProduct.GetCtogeryData();
+        //    ddlCatogery.DataSource = dt;
+        //    ddlCatogery.DataTextField = "CatogeryName";
+        //    ddlCatogery.DataValueField = "Id";
+        //    ddlCatogery.DataBind();
 
-            ListItem selectItem = new ListItem("--Select--", "Selected");
-            selectItem.Selected = true;
-            ddlCatogery.Items.Insert(0, selectItem);
-        }
-        public void BindSubCatogery(int catogeryId)
-        {
-            DataTable dt = clsProduct.GetSubCtogeryData(catogeryId);
-            ddlSubCatogery.DataSource = dt;
-            ddlSubCatogery.DataTextField = "SubCatogeryName";
-            ddlSubCatogery.DataValueField = "Id";
-            ddlSubCatogery.DataBind();
+        //    ListItem selectItem = new ListItem("--Select--", "Selected");
+        //    selectItem.Selected = true;
+        //    ddlCatogery.Items.Insert(0, selectItem);
+        //}
+        //public void BindSubCatogery(int catogeryId)
+        //{
+        //    DataTable dt = clsProduct.GetSubCtogeryData(catogeryId);
+        //    ddlSubCatogery.DataSource = dt;
+        //    ddlSubCatogery.DataTextField = "SubCatogeryName";
+        //    ddlSubCatogery.DataValueField = "Id";
+        //    ddlSubCatogery.DataBind();
 
-            ListItem selectItem = new ListItem("--Select--", "Selected");
-            selectItem.Selected = true;
-            ddlSubCatogery.Items.Insert(0, selectItem);
-        }
+        //    ListItem selectItem = new ListItem("--Select--", "Selected");
+        //    selectItem.Selected = true;
+        //    ddlSubCatogery.Items.Insert(0, selectItem);
+        //}
         protected void ddlCatogery_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int catogeryId = Convert.ToInt32(ddlCatogery.SelectedValue);
-            BindSubCatogery(catogeryId);
+            //if (ddlCatogery.SelectedItem.Text != "--Select--")
+            //{
+            //    int catogeryId = Convert.ToInt32(ddlCatogery.SelectedValue);
+            //    BindSubCatogery(catogeryId);
+            //}
+            //else
+            //{
+            //    ddlSubCatogery.SelectedValue = null;
+            //    BindSubCatogery(0);
+            //}
         }
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -176,6 +172,21 @@ namespace B2CAdmin.SallerModule
                     string tax = dt.Rows[0]["TaxType"].ToString();
                     txtPrice.Text = dt.Rows[0]["SalesPrice"].ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowOrderPopup();", true);
+                }
+            }
+            if (e.CommandName == "Image")
+            {
+                int ProductId = Convert.ToInt32(e.CommandArgument);
+                DataTable dt = clsProduct.ProductImageById(ProductId);
+                if (dt.Rows.Count > 0)
+                {
+                    image1.ImageUrl = dt.Rows[0]["ProductImage1"].ToString();
+                    image2.ImageUrl = dt.Rows[0]["ProductImage2"].ToString();
+                    image3.ImageUrl = dt.Rows[0]["ProductImage3"].ToString();
+                    image4.ImageUrl = dt.Rows[0]["ProductImage4"].ToString();
+                    image5.ImageUrl = dt.Rows[0]["ProductImage5"].ToString();
+                    image6.ImageUrl = dt.Rows[0]["ProductImage6"].ToString();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ImageModel').modal();", true);
                 }
             }
         }
@@ -215,11 +226,13 @@ namespace B2CAdmin.SallerModule
                 int result = clsOrder.InsertOrder(OrderId, lblStock.Text.Trim(), Quantity, Price, TotalPrice, ddlPaymentMode.SelectedItem.Text, fileName1, OrderBy);
                 if (result > 0)
                 {
-
+                    msgsuccess.InnerText = "Order Successfull";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    msg.InnerText = "Order Not Plessed";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
         }

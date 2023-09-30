@@ -14,13 +14,16 @@ namespace B2CAdmin.SallerModule
         ClsUserMaster clsUser = new ClsUserMaster();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["MobileNo"] == null)
+            if (Session["MobileNo"] != null)
+            {
+                if (!IsPostBack)
+                {
+                    GetUserProfile();
+                }
+            }
+            else
             {
                 Response.Redirect("../Default.aspx");
-            }
-            if (!IsPostBack)
-            {
-                GetUserProfile();
             }
         }
         public void GetUserProfile()

@@ -54,37 +54,47 @@ namespace B2CAdmin.App_Code
                 throw;
             }
         }
-        public DataTable GetOrderListByOrderId(string OrderBy)
+        public DataTable GetOrderListByOrderId(string OrderBy,string FromDate,string ToDate, string SearchData, string Action, string status)
         {
             try
             {
                 SqlConnection con = new SqlConnection(SqlCon);
-                SqlCommand cmd = new SqlCommand("SP_GetOrderListByUserId", con);
+                SqlCommand cmd = new SqlCommand("SP_GetOrderListByUserId1", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@OrderBy", OrderBy);
+                cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
         }
-        public DataTable GetOrderList()
+        public DataTable GetOrderList(string Status, string FromDate, string ToDate, string SearchData, string Action)
         {
             try
             {
                 SqlConnection con = new SqlConnection(SqlCon);
-                SqlCommand cmd = new SqlCommand("SP_GetOrderList", con);
+                SqlCommand cmd = new SqlCommand("SP_GetOrderList1", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Status", Status);
+                cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

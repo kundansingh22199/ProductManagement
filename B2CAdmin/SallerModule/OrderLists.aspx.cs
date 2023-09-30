@@ -26,22 +26,17 @@ namespace B2CAdmin.SallerModule
             try
             {
                 string OrderBy = Session["UserId"].ToString();
-                DataTable dt = clsOrder.GetOrderListByOrderId(OrderBy);
+                string status = ddlStatus.SelectedValue;
+                if (ddlStatus.SelectedValue.ToUpper() == "ALL")
+                {
+                    status = "";
+                }
+                DataTable dt = clsOrder.GetOrderListByOrderId(OrderBy,txtfromDate.Text.Trim(),txtoDate.Text.Trim(),txtsearch.Text.Trim(),ddlSearch.SelectedValue, status);
                 if (dt.Rows.Count > 0)
                 {
                     PagedDataSource pgitems = new PagedDataSource();
-                    if (txtSearch.Text.Trim() == "")
-                    {
-                        pgitems.DataSource = dt.DefaultView;
-                        pgitems.AllowPaging = true;
-                    }
-                    else
-                    {
-                        //DataTable dt1 = clsProduct.SearchProductBySearchText(txtSearch.Text.Trim());
-                        //pgitems.DataSource = dt1.DefaultView;
-                        //pgitems.AllowPaging = true;
-                    }
-
+                    pgitems.DataSource = dt.DefaultView;
+                    pgitems.AllowPaging = true;
                     //control page size from here 
                     pgitems.PageSize = 5;
                     pgitems.CurrentPageIndex = pagenumber;
@@ -92,7 +87,7 @@ namespace B2CAdmin.SallerModule
                 ViewState["Status"] = lblStatus.Text;
                 ViewState["Id"] = e.CommandArgument;
                 msg.InnerText = "Are You Sure? To Cancle This Order";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
 
@@ -136,12 +131,12 @@ namespace B2CAdmin.SallerModule
             if (Status.ToLower() == "approved")
             {
                 msg.InnerText = "Approved Status Can Not be Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else if(Status.ToLower() == "cancle")
             {
                 msg.InnerText = "Order Already Cancle Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else
             {
@@ -149,11 +144,40 @@ namespace B2CAdmin.SallerModule
                 if (result > 0)
                 {
                     BindOrderLists(0);
+                    msgsuccess.InnerText = "Successfull Cancled";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    msg.InnerText = "Somthing Wrong";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
+            }
+        }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindOrderLists(0);
+        }
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindOrderLists(0);
+        }
+        protected void ddlSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSearch.SelectedValue == "ByDate")
+            {
+                txtsearch.Text = "";
+                divDate1.Visible = true;
+                divDate2.Visible = true;
+                divText.Visible = false;
+            }
+            else
+            {
+                txtfromDate.Text = "";
+                txtoDate.Text = "";
+                divDate1.Visible = false;
+                divDate2.Visible = false;
+                divText.Visible = true;
             }
         }
     }

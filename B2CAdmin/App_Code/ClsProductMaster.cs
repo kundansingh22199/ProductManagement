@@ -300,13 +300,33 @@ namespace B2CAdmin.App_Code
                 throw;
             }
         }
-        public DataTable ProductListDetailsJoin()
+        public DataTable SearchSallerProductByAction(string SearchText, string Action)
         {
             try
             {
                 SqlConnection con = new SqlConnection(SqlCon);
-                SqlCommand cmd = new SqlCommand("SP_GetProductListJoin", con);
+                SqlCommand cmd = new SqlCommand("SP_SearchSellarListData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SearchData", SearchText);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public DataTable ProductImageById(int productId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetProductImageById", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductId", productId);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
