@@ -1,18 +1,19 @@
-﻿using B2CAdmin.App_Code;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using B2CAdmin.App_Code;
+using System.Drawing;
 using System.Web.UI.WebControls;
-
 namespace B2CAdmin.SallerModule
 {
-    public partial class SellarStock : System.Web.UI.Page
+    public partial class SalesPage : System.Web.UI.Page
     {
         ClsStockMaster clsStock = new ClsStockMaster();
+        ClsSalesMaster clsSales = new ClsSalesMaster();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,7 +26,7 @@ namespace B2CAdmin.SallerModule
             try
             {
                 string userId = Session["UserId"].ToString();
-                DataTable dt = clsStock.GetSallerStockList(userId);
+                DataTable dt = clsStock.GetSallerStockListBySalesPrice(userId);
                 if (dt.Rows.Count > 0)
                 {
                     PagedDataSource pgitems = new PagedDataSource();
@@ -68,7 +69,7 @@ namespace B2CAdmin.SallerModule
                     Repeater1.DataBind();
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
@@ -82,63 +83,71 @@ namespace B2CAdmin.SallerModule
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if(e.CommandName== "Add")
+            if (e.CommandName == "Buy")
             {
-                string StockId = e.CommandArgument.ToString();
-                Response.Redirect("ProductList.aspx?StockId=" + StockId);
-            }
-            if(e.CommandName== "SetPrice")
-            {
-                string StockId = e.CommandArgument.ToString();
-                ViewState["StockId"]=StockId;
-                Label lblPrice = e.Item.FindControl("lblPrice") as Label;
-                string price = lblPrice.Text.Replace(",", "");
-                txtPurchase.Text = price;
-                Label lblMrpPrice = e.Item.FindControl("lblMrpPrice") as Label;
-                string MrpPrice = lblMrpPrice.Text.Replace(",", "");
-                txtMrpPrice.Text = MrpPrice;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#SellPriceModel').modal();", true);
+                ViewState["StockId"] = e.CommandArgument;
+                Label lblPrice = e.Item.FindControl("lblSellingPrice") as Label;
+                txtPrice.Text = lblPrice.Text;
+                Label lblProductCode = e.Item.FindControl("lblProductCode") as Label;
+                ViewState["ProductCode"] = lblProductCode.Text;
+                Label lblQuantity = e.Item.FindControl("lblQuantity") as Label;
+                ViewState["StockQuantity"] = lblQuantity.Text;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ActionModel').modal();", true);
             }
         }
 
-        protected void btnSetPrice_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            try
+            string UserId = Session["UserId"].ToString();
+            int count = 0;
+            int Quantity = Convert.ToInt32(txtQuantity.Text.Trim());
+            decimal Price = Convert.ToDecimal(txtPrice.Text.Trim().Replace(",",""));
+            decimal TotalPrice = Price * Quantity;
+            string StockId = ViewState["StockId"].ToString();
+            string ProductCode = ViewState["ProductCode"].ToString();
+            int StockQuantity = Convert.ToInt32(ViewState["StockQuantity"]);
+            if (StockQuantity > Quantity)
             {
-                decimal MrpPrice = Convert.ToDecimal(txtMrpPrice.Text);
-                decimal PurchasePrice = Convert.ToDecimal(txtPurchase.Text);
-                int result = 0;
-                int Id = Convert.ToInt32(ViewState["StockId"]);
-                decimal SellingPrice = Convert.ToDecimal(txtSalesPrice.Text.Trim());
-                decimal Product_Price = Convert.ToDecimal(txtProductPrice.Text.Trim());
-                decimal DiscountValue = Convert.ToDecimal(txtDiscount.Text.Trim());
-                int DiscountType = Convert.ToInt32(ddlDiscountType.SelectedValue);
-                if (MrpPrice > SellingPrice && PurchasePrice < SellingPrice)
+                count = clsSales.CheckDuplicateCustomer(txtMobileNo.Text.Trim());
+                string Status = "1";
+                if (count > 0)
                 {
-                    result = clsStock.SetSellingPrice(Id, SellingPrice, Product_Price, DiscountValue, DiscountType);
+                    int result = clsSales.BuyProduct(txtMobileNo.Text.Trim(), ProductCode, StockId, UserId, Quantity, Price, TotalPrice, Status);
                     if (result > 0)
                     {
                         GetSallerStock(0);
-                        msgsuccess.InnerText = "Price Set Successfull";
+                        msgsuccess.InnerText = "Order Successfull";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                     }
                     else
                     {
-                        msg.InnerText = "Somthing Wrong";
+                        errormsg.InnerText = "Somthing Wrong";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                     }
                 }
                 else
                 {
-                    msg.InnerText = "Selling Price is Lass than Mrp Price And Gratter Than Purchase Price";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
+                    int result1 = clsSales.InsertCustomer(txtMobileNo.Text.Trim(), txtName.Text.Trim(), txtMobileNo.Text.Trim(), Status, UserId);
+                    int result2 = clsSales.BuyProduct(txtMobileNo.Text.Trim(), ProductCode, StockId, UserId, Quantity, Price, TotalPrice, Status);
+                    if (result2 > 0 && result1>0)
+                    {
+                        GetSallerStock(0);
+                        msgsuccess.InnerText = "Order Successfull";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                    }
+                    else
+                    {
+                        errormsg.InnerText = "Somthing Wrong";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
+                    }
                 }
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                errormsg.InnerText = "Low Stock";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
+            
         }
     }
 }

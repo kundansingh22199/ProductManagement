@@ -2090,10 +2090,12 @@
     <Content Include="AdminModule\plugins\uplot\uPlot.min.css" />
     <Content Include="Forget Password.aspx" />
     <Content Include="Registration.aspx" />
+    <Content Include="SallerModule\AddCustomer.aspx" />
     <Content Include="SallerModule\DashBoard.aspx" />
     <Content Include="SallerModule\OrderLists.aspx" />
     <Content Include="SallerModule\ProductList.aspx" />
     <Content Include="SallerModule\Profile.aspx" />
+    <Content Include="SallerModule\SalesPage.aspx" />
     <Content Include="SallerModule\SellarStock.aspx" />
     <Content Include="sweet_alert\sweetalert-dev.js" />
     <Content Include="sweet_alert\sweetalert.css" />
@@ -2160,6 +2162,7 @@
     <Compile Include="App_Code\ClsOrderMaster.cs" />
     <Compile Include="App_Code\ClsProductMaster.cs" />
     <Compile Include="App_Code\ClsProfileMaster.cs" />
+    <Compile Include="App_Code\ClsSalesMaster.cs" />
     <Compile Include="App_Code\ClsSqlConnection.cs" />
     <Compile Include="App_Code\ClsStockMaster.cs" />
     <Compile Include="App_Code\ClsUserMaster.cs" />
@@ -2192,6 +2195,13 @@
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SallerModule\AddCustomer.aspx.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerModule\AddCustomer.aspx.designer.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SallerModule\DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2219,6 +2229,13 @@
     </Compile>
     <Compile Include="SallerModule\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerModule\SalesPage.aspx.cs">
+      <DependentUpon>SalesPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerModule\SalesPage.aspx.designer.cs">
+      <DependentUpon>SalesPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="SallerModule\SallerMaster.Master.cs">
       <DependentUpon>SallerMaster.Master</DependentUpon>

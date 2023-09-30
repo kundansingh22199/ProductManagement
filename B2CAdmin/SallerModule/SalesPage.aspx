@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SallerModule/SallerMaster.Master" AutoEventWireup="true" CodeBehind="SellarStock.aspx.cs" Inherits="B2CAdmin.SallerModule.SellarStock" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SallerModule/SallerMaster.Master" AutoEventWireup="true" CodeBehind="SalesPage.aspx.cs" Inherits="B2CAdmin.SallerModule.SalesPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -38,8 +38,8 @@
                     <div class="col-md-12">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <HeaderTemplate>
-                                <div class="table-responsive" style="height: 400px; width:100%; overflow: scroll;">
-                                    <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow: scroll; width: max-content;  ">
+                                <div class="table-responsive" style="height: 400px; width: 100%; overflow: scroll;">
+                                    <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow: scroll; width: max-content;">
                                         <thead class="bg-primary text-white">
                                             <tr>
                                                 <th>SL/NO</th>
@@ -47,13 +47,10 @@
                                                 <th>Product Code</th>
                                                 <th>Name</th>
                                                 <th>Brand</th>
-                                                <th>Serial No</th>
-                                                <th>HSN Code</th>
-                                                <th>Quantity</th>
                                                 <th>Mrp Price</th>
-                                                <th>Purchase Price</th>
                                                 <th>Product Price</th>
-                                                <th colspan="2">Sales Price</th>
+                                                <th>Discount</th>
+                                                <th>Sales Price</th>
                                                 <th>Size</th>
                                                 <th>Catogery</th>
                                                 <th>SubCatogery</th>
@@ -82,28 +79,16 @@
                                             <asp:Label ID="lblBrand" runat="server" Text='<%# Eval("S_Brandname") %>'></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("SerialNo") %>'></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("HSNCode") %>'></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
-                                        </td>
-                                        <td>
                                             <asp:Label ID="lblMrpPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("MrpPrice")) %>'></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("Price")) %>'></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="Label12" runat="server" Text='<%#string.Format("{0:n2}",Eval("Product_Price")) %>'></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:Label ID="Label9" runat="server" Text='<%#string.Format("{0:n2}",Eval("SellingPrice")) %>'></asp:Label>
+                                            <asp:Label ID="Label5" runat="server" Text='<%#string.Format("{0:n2}",Eval("DiscountValue")) %>'></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="linkStockPrice" CommandName="SetPrice" CommandArgument='<%# Eval("Id") %>' runat="server"><i class="fas fa-edit fa-xl" aria-hidden="true" style="font-size:20px"></i> </asp:LinkButton>
+                                            <asp:Label ID="lblSellingPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("SellingPrice")) %>'></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="Label3" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
@@ -121,7 +106,8 @@
                                             <asp:Label ID="Label4" runat="server" Text='<%# Eval("ExpiryDate") %>'></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="LinkButton1" CommandName="Add" CommandArgument='<%# Eval("StockId") %>' runat="server"><i class="fas fa-plus fa-xl" aria-hidden="true" style="font-size:25px"></i> </asp:LinkButton>
+                                            <asp:Label ID="lblQuantity" Visible="false" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" CommandName="Buy" CommandArgument='<%# Eval("StockId") %>' runat="server" Style="width: 90px">Buy Now </asp:LinkButton>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -144,50 +130,38 @@
             </div>
         </section>
     </div>
-    <!-- Product Modal -->
-    <div id="SellPriceModel" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-md ">
+    <div id="ActionModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Set Selling Price</h4>
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Action Dialog</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <asp:Label runat="server" ID="Label10" for="">Mrp Price</asp:Label>
-                            <asp:TextBox runat="server" ID="txtMrpPrice" class="form-control mb-2" oninput="CalculateFunction();"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label runat="server" ID="Label13" for="">Purchase Price</asp:Label>
-                            <asp:TextBox runat="server" ID="txtPurchase" class="form-control mb-2" oninput="CalculateFunction();"></asp:TextBox>
-                        </div>
-                        <div class="col-md-12">
-                            <asp:Label runat="server" ID="Label6" for="">Set Product Price</asp:Label>
-                            <asp:TextBox runat="server" ID="txtProductPrice" class="form-control mb-2" oninput="CalculateFunction();"></asp:TextBox>
-                        </div>
-                        <div class="col-sm-12">
-                            <asp:Label runat="server" ID="Label5">Discount<span style="color:red"><b>*</b></span> </asp:Label>
-                            <div class="input-group mb-2">
-                                <asp:TextBox runat="server" ID="txtDiscount" placeholder="Enter Product Size" class="form-control" oninput="CalculateFunction();"></asp:TextBox>
-                                <div class="input-group-prepend">
-                                    <asp:DropDownList ID="ddlDiscountType" class="form-control" runat="server" oninput="CalculateFunction();">
-                                        <asp:ListItem Text="Select" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="PER" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="RS" Value="2"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+                <div class="modal-body ">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                Customer Name
+                                <asp:TextBox runat="server" ID="txtName" CssClass="form-control" placeholder="Enter Customer Name"></asp:TextBox>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <asp:Label runat="server" ID="Label11" for="">Sales Price</asp:Label>
-                            <asp:TextBox runat="server" ID="txtSalesPrice" class="form-control mb-2 bg-white"></asp:TextBox>
+                            <div class="col-sm-12">
+                                Mobile No
+                                <asp:TextBox runat="server" ID="txtMobileNo" MaxLength="10" CssClass="form-control" onkeypress="return isNumber(event)"  placeholder="Enter Mobile No"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                Quantity
+                                <asp:TextBox runat="server" ID="txtQuantity" CssClass="form-control" TextMode="Number" onkeypress="return isNumber(event)"  placeholder="Enter Quantity"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                Product Price
+                                <asp:TextBox runat="server" ReadOnly="true" ID="txtPrice" CssClass="form-control" placeholder="Enter Price"></asp:TextBox>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button runat="server" ID="btnSetPrice" class="btn btn-primary" Text="Set Price" OnClick="btnSetPrice_Click" />
+                    <asp:Button runat="server" ID="btnSubmit" class="btn btn-primary" Text="Submit" OnClick="btnSubmit_Click" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -198,12 +172,12 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header bg-danger">
-                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Alert Dialog</h4>
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size: 30px"></i></p>
-                    <h6 runat="server" id="msg" class="text-danger"></h6>
+                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size:30px"></i></p>
+                    <div runat="server" id="errormsg" class="text-danger text-center"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -220,8 +194,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-center">
-                        <i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size: 30px"></i>
+                    <p class="text-center"><i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size:30px"></i>
                     </p>
                     <div runat="server" id="msgsuccess" class="text-success text-center"></div>
                 </div>
@@ -231,38 +204,4 @@
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('<%= txtSalesPrice.ClientID %>').readOnly = true;
-        document.getElementById('<%= txtMrpPrice.ClientID %>').readOnly = true;
-        document.getElementById('<%= txtPurchase.ClientID %>').readOnly = true;
-        function CalculateFunction() {
-            debugger
-            var ProductPrice = parseFloat(document.getElementById('<%= txtProductPrice.ClientID %>').value);
-            var DiscountPrice = parseFloat(document.getElementById('<%= txtDiscount.ClientID %>').value);
-            var discountType = document.getElementById('<%= ddlDiscountType.ClientID %>').value;
-
-            var D = 0;
-            if (ProductPrice == "" || ProductPrice == null) {
-                D = 0;
-            }
-            if (discountType == '1') {
-                D = ProductPrice - (ProductPrice * DiscountPrice) / 100;
-            }
-            else if (discountType == '2') {
-                D = ProductPrice - DiscountPrice;
-            }
-            else {
-                D = ProductPrice;
-            }
-            D = D.toFixed(4)
-            parseFloat(document.getElementById('<%= txtSalesPrice.ClientID %>').value = D);
-        }
-        function Confirm() {
-            var ProductPrice = parseFloat(document.getElementById('<%= txtProductPrice.ClientID %>').value);
-            var MrpPrice = parseFloat(document.getElementById('<%= txtMrpPrice.ClientID %>').value);
-            var PurchasePrice = parseFloat(document.getElementById('<%= txtPurchase.ClientID %>').value);
-
-        }
-    </script>
-    <!-- Product Modal End -->
 </asp:Content>

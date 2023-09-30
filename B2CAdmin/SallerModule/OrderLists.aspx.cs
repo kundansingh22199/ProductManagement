@@ -92,7 +92,7 @@ namespace B2CAdmin.SallerModule
                 ViewState["Status"] = lblStatus.Text;
                 ViewState["Id"] = e.CommandArgument;
                 msg.InnerText = "Are You Sure? To Cancle This Order";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
 
@@ -136,12 +136,12 @@ namespace B2CAdmin.SallerModule
             if (Status.ToLower() == "approved")
             {
                 msg.InnerText = "Approved Status Can Not be Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else if(Status.ToLower() == "cancle")
             {
                 msg.InnerText = "Order Already Cancle Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else
             {
@@ -149,10 +149,13 @@ namespace B2CAdmin.SallerModule
                 if (result > 0)
                 {
                     BindOrderLists(0);
+                    msgsuccess.InnerText = "Successfull Cancled";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    msg.InnerText = "Somthing Wrong";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
         }

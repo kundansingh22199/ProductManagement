@@ -215,11 +215,13 @@ namespace B2CAdmin.SallerModule
                 int result = clsOrder.InsertOrder(OrderId, lblStock.Text.Trim(), Quantity, Price, TotalPrice, ddlPaymentMode.SelectedItem.Text, fileName1, OrderBy);
                 if (result > 0)
                 {
-
+                    msgsuccess.InnerText = "Order Successfull";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    msg.InnerText = "Order Not Plessed";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
         }

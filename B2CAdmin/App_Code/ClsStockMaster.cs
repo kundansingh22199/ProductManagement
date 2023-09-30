@@ -378,5 +378,45 @@ namespace B2CAdmin.App_Code
                 throw;
             }
         }
+        public DataTable GetSallerStockListBySalesPrice(string SallerId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_GetSallerStockBySalePrice", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SallerId", SallerId);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public int SetSellingPrice(int Id, decimal SellingPrice,decimal Product_Price, decimal DiscountValue, int Discount_Type)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(SqlCon);
+                SqlCommand cmd = new SqlCommand("SP_SetSellarSellingPrice", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
+                cmd.Parameters.AddWithValue("@Product_Price", Product_Price);
+                cmd.Parameters.AddWithValue("@DiscountValue", DiscountValue);
+                cmd.Parameters.AddWithValue("@Discount_Type", Discount_Type);
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                return result;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
     }
 }

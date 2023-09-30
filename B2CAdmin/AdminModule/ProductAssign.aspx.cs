@@ -104,7 +104,7 @@ namespace B2CAdmin.AdminModule
                 msg.InnerText = "Are You Sure? To Confirm This Order";
                 btnSucess.Visible = true;
                 btnCancle.Visible = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ActionModel').modal();", true);
             }
             else if (e.CommandName == "Reject")
             {
@@ -114,7 +114,7 @@ namespace B2CAdmin.AdminModule
                 msg.InnerText = "Are You Sure? To Cancle This Order";
                 btnSucess.Visible = false;
                 btnCancle.Visible = true;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ActionModel').modal();", true);
             }
         }
 
@@ -145,13 +145,13 @@ namespace B2CAdmin.AdminModule
             string userId = Session["UserId"].ToString();
             if (Status.ToLower() == "approved")
             {
-                msg.InnerText = "Approved Status Can Not be Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                errormsg.InnerText = "Approved Status Can Not be Cancalled";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else if (Status.ToLower() == "cancle")
             {
-                msg.InnerText = "Order Already Cancle Cancalled";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                errormsg.InnerText = "Order Already Cancle Cancalled";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else
             {
@@ -159,10 +159,13 @@ namespace B2CAdmin.AdminModule
                 if (result > 0)
                 {
                     BindOrderLists(0);
+                    msgsuccess.InnerText = "Successfull Cancled";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    errormsg.InnerText = "Somthing Wrong";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
         }
@@ -172,8 +175,8 @@ namespace B2CAdmin.AdminModule
             string Status = ViewState["Status"].ToString();
             if (Status.ToLower() == "approved")
             {
-                msg.InnerText = "Already Approved";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                errormsg.InnerText = "Already Approved";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             else if (Status.ToLower() == "pending")
             {
@@ -197,22 +200,26 @@ namespace B2CAdmin.AdminModule
                             int result1 = clsOrder.UpdateOrderStatus(Id, "Approved", userId);
                             int result2 = clsOrder.InsertSallerStock(StockId, OrderBy, orderQuantity, Price);
                             BindOrderLists(0);
+                            msgsuccess.InnerText = "Successfull Approved";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                         }
                         else
                         {
-
+                            errormsg.InnerText = "Somthing Wrong";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                         }
                     }
                     else
                     {
-
+                        errormsg.InnerText = "Your Stock Is Low";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                     }
                 }
             }
             else
             {
-                msg.InnerText = "This Order Can Not be Approved";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
+                errormsg.InnerText = "This Order Can Not be Approved";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
     }

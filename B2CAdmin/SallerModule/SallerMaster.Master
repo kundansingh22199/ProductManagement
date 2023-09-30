@@ -43,6 +43,10 @@
             border-radius: 5px;
         }
     </style>
+
+     <script src="sweet_alert/sweetalert-dev.js"></script>
+    <link href="sweet_alert/sweetalert.css" rel="stylesheet" />
+    <script src="sweet_alert/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <form id="form1" runat="server">
@@ -242,9 +246,9 @@
                             </li>
                             <li class="nav-item user-panel ">
                                 <a href="SellarStock.aspx" class="nav-link">
-                                    <i class="nav-icon far fa-image"></i>
+                                    <i class="nav-icon fas fa-copy"></i>
                                     <p>
-                                        Stock Manage
+                                        Stock Management
                                     </p>
                                 </a>
                             </li>
@@ -258,7 +262,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="SalesPage.aspx" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Point of Sales</p>
                                         </a>
@@ -275,7 +279,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="AddCustomer.aspx" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Customer</p>
                                         </a>
@@ -365,7 +369,7 @@
         <script src="../AdminModule/plugins/raphael/raphael.min.js"></script>
         <script src="../AdminModule/plugins/jquery-mapael/jquery.mapael.min.js"></script>
         <script src="../AdminModule/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-        <script src="Js/validation.js"></script>
+        <script src="../AdminModule/Js/validation.js"></script>
 
     </form>
 </body>

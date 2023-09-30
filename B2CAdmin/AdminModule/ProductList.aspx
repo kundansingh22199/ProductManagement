@@ -40,8 +40,8 @@
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <HeaderTemplate>
                                 <div class="table-container">
-                                    <div class="table-responsive" style="height: 400px; overflow: scroll;">
-                                        <table class="table table-striped  table-bordered" id="myTable" style="border: 1px solid; width: 100%; height: 30px;">
+                                    <div class="table-responsive" style="height: 400px; width:100%; overflow: scroll;">
+                                        <table class="table table-striped  table-bordered" id="myTable" style="border: 1px solid; width: max-content; height: 30px;">
                                             <tr style="background-color: #007bff; color: white">
                                                 <th>
                                                     <asp:Label ID="headsl" runat="server" Text="SL/NO"></asp:Label></th>

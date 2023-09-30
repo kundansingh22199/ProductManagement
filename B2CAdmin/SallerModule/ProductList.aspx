@@ -48,7 +48,8 @@
                     <div class="col-md-12">
                         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                             <HeaderTemplate>
-                                <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow-x: scroll; width: 100%">
+                                <div class="table-responsive" style="height: 400px; width:100%; overflow: scroll;">
+                                <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow: scroll;width:max-content;  max-width: max-content; ">
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th>
@@ -108,6 +109,7 @@
                             </ItemTemplate>
                             <FooterTemplate>
                                 </table>
+                                </div>
                             </FooterTemplate>
                         </asp:Repeater>
                         <div style="overflow: hidden;">
@@ -129,7 +131,7 @@
         <div class="modal-dialog modal-lg ">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-primary">
                     <h4 class="modal-title text-left" style="text-align: left; position: relative">Product Order</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -215,6 +217,43 @@
         </div>
     </div>
     <!-- Product Modal End -->
+    <div id="AlertModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Alert Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size:30px"></i></p>
+                    <div runat="server" id="msg" class="text-danger text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ConformationModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size:30px"></i>
+                    </p>
+                    <div runat="server" id="msgsuccess" class="text-success text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function () {
             debugger
