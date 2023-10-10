@@ -157,6 +157,12 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
+                                <div class="alert alert alert-dismissible bg-danger" runat="server" visible="false" id="errormsgbox">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Error!</strong> Fill In The Blank
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
                                 Customer Name
                                 <asp:TextBox runat="server" ID="txtName" CssClass="form-control" placeholder="Enter Customer Name"></asp:TextBox>
                             </div>
@@ -369,79 +375,109 @@
     </div>
 
     <div id="OrderPrintModel" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Order Print</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-content" runat="server" id="DivModelPrint">
+                <div class="modal-header bg-success" runat="server" id="modelhead">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Bill Receipt</h4>
+                    <button type="button" class="close" runat="server" id="btnclose" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body ">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
+                                <asp:Label runat="server" ID="lblCompanyName" Text="Company Name" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                <asp:Label runat="server" ID="lblAddress" Text="Company Name" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                <hr />
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row  border-right">
+                                    <div class="col-sm-5">
+                                        <asp:Label runat="server" ID="Label8" Text="Seller Name" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <asp:Label runat="server" ID="lblSellerName" CssClass="form-control border-bottom-0"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <asp:Label runat="server" ID="Label13" Text="Mobile No" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-7 ">
+                                        <asp:Label runat="server" ID="lblSellerMobile" CssClass="form-control border-bottom-0"></asp:Label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <asp:Repeater ID="RepOrderPrint" runat="server">
-                                            <HeaderTemplate>
-                                                <div class="table-responsive" style="height: 300px; width: 100%; overflow: scroll;">
-                                                    <table id="bootstrap-data-table-export" class="table table-bordered " style="overflow: scroll; width: 100%;">
-                                                        <thead class="bg-success text-white">
-                                                            <tr>
-                                                                <th>SL/NO</th>
-                                                                <th>Customer Mobile</th>
-                                                                <th>Product Code</th>
-                                                                <th>Product Name</th>
-                                                                <th>Price</th>
-                                                                <th>Quantity</th>
-                                                                <th>TotalPrice</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                                <tbody style="font-size: 80%;">
-                                                    <tr>
-                                                        <td>
-                                                            <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblCustomerMobile" runat="server" Text='<%# Eval("CustomerMobile") %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblSellingPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("Price")) %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="Label7" runat="server" Text='<%#string.Format("{0:n2}",Eval("TotalPrice")) %>'></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                </table>
-                                                </div>
-                                            </FooterTemplate>
-                                        </asp:Repeater>
+                                    <div class="col-sm-5">
+                                        <asp:Label runat="server" ID="Label11" Text="Customer Name" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <asp:Label runat="server" ID="lblCustomerName" CssClass="form-control border-bottom-0"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <asp:Label runat="server" ID="Label9" Text="Mobile No" CssClass="form-control border-bottom-0 font-weight-bolder"></asp:Label>
+                                    </div>
+                                    <div class="col-sm-7 ">
+                                        <asp:Label runat="server" ID="lblCustomerMobileNo" CssClass="form-control border-bottom-0"></asp:Label>
                                     </div>
                                 </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-12">
+                                <hr />
+                                <asp:Repeater ID="RepOrderPrint" runat="server">
+                                    <HeaderTemplate>
+                                        <table id="bootstrap-data-table-export" class="table table-bordered " style="width: 100%; height: auto">
+                                            <thead class="bg-white ">
+                                                <tr>
+                                                    <th>SL/NO</th>
+                                                    <th>Product Name</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>TotalPrice</th>
+                                                </tr>
+                                            </thead>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tbody style="font-size: 80%;">
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="lblSNo" runat="server" Text='<%#  Container.ItemIndex + 1 %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblSellingPrice" runat="server" Text='<%#string.Format("{0:n2}",Eval("Price")) %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label7" runat="server" Text='<%#string.Format("{0:n2}",Eval("TotalPrice")) %>'></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </table>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </div>
+                            <div class="col-sm-12 text-right">
+                                <asp:Label runat="server" ID="txtGrandTotalPrint" CssClass="form-control border-bottom-0" Style="text-align: right"></asp:Label>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" runat="server" id="modelFooter">
+
                     <asp:Button runat="server" ID="btnPrintOrder" class="btn btn-success" Text="Print" OnClick="btnPrintOrder_Click" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>

@@ -1,0 +1,306 @@
+D:\Kundan\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll.config
+D:\Kundan\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\B2CAdmin.pdb
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe.config
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csc.rsp
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe.config
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\csi.rsp
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.AppContext.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Collections.Immutable.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Console.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Globalization.Calendars.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Http.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Sockets.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Reflection.Metadata.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.ValueTuple.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe.config
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\vbc.rsp
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe
+D:\Kundan\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe.config
+D:\Kundan\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Kundan\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Kundan\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CoreCompileInputs.cache
+D:\Kundan\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CopyComplete
+D:\Kundan\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.dll
+D:\Kundan\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.pdb
+D:\Kundan\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.AssemblyReference.cache
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll.config
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.pdb
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe.config
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.rsp
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe.config
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.rsp
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.AppContext.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Console.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Http.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.ValueTuple.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe.config
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.rsp
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.AssemblyReference.cache
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CoreCompileInputs.cache
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CopyComplete
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.dll
+C:\Users\Akash kumar\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.pdb
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CoreCompileInputs.cache
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll.config
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\B2CAdmin.pdb
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.exe.config
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csc.rsp
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.exe.config
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\csi.rsp
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.AppContext.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Console.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Http.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Net.Sockets.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.ValueTuple.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.exe.config
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\vbc.rsp
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.Win32.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\netstandard.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.AppContext.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Collections.Concurrent.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Collections.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Collections.NonGeneric.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Collections.Specialized.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ComponentModel.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ComponentModel.EventBasedAsync.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ComponentModel.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ComponentModel.TypeConverter.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Console.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Data.Common.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.Contracts.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.Debug.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.FileVersionInfo.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.Process.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.StackTrace.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.TextWriterTraceListener.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.Tools.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.TraceSource.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Diagnostics.Tracing.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Drawing.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Dynamic.Runtime.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Globalization.Calendars.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Globalization.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Globalization.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.Compression.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.Compression.ZipFile.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.FileSystem.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.FileSystem.DriveInfo.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.FileSystem.Watcher.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.IsolatedStorage.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.MemoryMappedFiles.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.Pipes.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.IO.UnmanagedMemoryStream.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Linq.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Linq.Expressions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Linq.Parallel.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Linq.Queryable.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Http.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.NameResolution.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.NetworkInformation.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Ping.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Requests.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Security.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.Sockets.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.WebHeaderCollection.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.WebSockets.Client.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Net.WebSockets.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ObjectModel.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Reflection.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Reflection.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Reflection.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Resources.Reader.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Resources.ResourceManager.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Resources.Writer.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.CompilerServices.VisualC.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Handles.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.InteropServices.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Numerics.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Serialization.Formatters.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Serialization.Json.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Serialization.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.Serialization.Xml.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Claims.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Cryptography.Csp.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.Principal.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Security.SecureString.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Encoding.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Encoding.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.RegularExpressions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Overlapped.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Tasks.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Tasks.Parallel.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Thread.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.ThreadPool.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Timer.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.ValueTuple.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.ReaderWriter.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.XDocument.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.XmlDocument.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.XmlSerializer.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.XPath.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Xml.XPath.XDocument.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\BarcodeStandard.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\EPPlus.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\EPPlus.Interfaces.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\EPPlus.System.Drawing.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\SkiaSharp.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Buffers.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Memory.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Numerics.Vectors.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Resources.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Encodings.Web.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Json.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\zxing.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\ZXing.Net.Mobile.Core.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\zxing.portable.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\zxing.presentation.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\ZXingNetMobile.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\EPPlus.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\SkiaSharp.pdb
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\SkiaSharp.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Buffers.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Memory.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Numerics.Vectors.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Resources.Extensions.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Encodings.Web.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Text.Json.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\zxing.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\bin\zxing.presentation.xml
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.CopyComplete
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.dll
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.pdb
+C:\Users\i5\Desktop\B2CAdmin\B2CAdmin\obj\Debug\B2CAdmin.csproj.AssemblyReference.cache

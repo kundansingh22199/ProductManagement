@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <asp:TextBox runat="server" ID="txtSearch"  placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtSearch" placeholder="Search Here....!!" class="form-control" OnTextChanged="btnSearch_Click" AutoPostBack="true"></asp:TextBox>
                     </div>
                     <div class="col-md-2">
                         <div class="input-group mb-2">
@@ -302,5 +302,43 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div id="AlertModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size: 30px"></i></p>
+                    <div runat="server" id="errormsg" class="text-danger text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ConformationModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size: 30px"></i>
+                    </p>
+                    <div runat="server" id="msgsuccess" class="text-success text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>

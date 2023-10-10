@@ -132,10 +132,13 @@ namespace B2CAdmin.AdminModule
                 if (result > 0)
                 {
                     ProductLists(0);
+                    msgsuccess.InnerText = "Successfull";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    errormsg.InnerText = "Somthing Error";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
             if (e.CommandName == "Stock")

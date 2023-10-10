@@ -23,12 +23,31 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
-                        <asp:TextBox runat="server" ID="txtSearch" placeholder="Search Here....!!" class="form-control" AutoPostBack="true"></asp:TextBox>
+                    <div class="col-md-3 mb-2">
+                        Search By
+                        <asp:DropDownList runat="server" ID="ddlSearch" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearch_SelectedIndexChanged">
+                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                            <asp:ListItem Value="CustomerName" Text="Customer Name"></asp:ListItem>
+                            <asp:ListItem Value="UserId" Text="Customer ID"></asp:ListItem>
+                            <asp:ListItem Value="SellarMobileNo" Text="Sellar Mobile No"></asp:ListItem>
+                            <asp:ListItem Value="ByDate" Text="Search By Date"></asp:ListItem>
+                        </asp:DropDownList>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3 mb-2" runat="server" id="divDate1" visible="false">
+                        From 
+                        <asp:TextBox runat="server" ID="txtfromDate" TextMode="Date" class="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3 mb-2" runat="server" id="divDate2" visible="false">
+                        To
+                        <asp:TextBox runat="server" ID="txtoDate" TextMode="Date" class="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3 mb-2" runat="server" id="divText">
+                        Search here..!!
+                        <asp:TextBox runat="server" ID="txtsearch" class="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2 mb-2">
                         <div class="input-group mb-2">
-                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" />
+                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click" />
                         </div>
                     </div>
                     <div class="col-md-12">

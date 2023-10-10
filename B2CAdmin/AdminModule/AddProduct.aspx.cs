@@ -87,11 +87,13 @@ namespace B2CAdmin.AdminModule
             if (result > 0)
             {
                 BindCatogery();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Catogery Added ', 'Sucess')", true);
+                msgsuccess.InnerText = "Successfull";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
         public void BindCatogery()
@@ -127,11 +129,13 @@ namespace B2CAdmin.AdminModule
             if (result > 0)
             {
                 BindSubCatogery();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Sub Catogery Added ', 'Sucess')", true);
+                msgsuccess.InnerText = "Successfull";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
         protected void btnStock_Click(object sender, EventArgs e)
@@ -163,11 +167,13 @@ namespace B2CAdmin.AdminModule
             if (result > 0)
             {
                 BindDdlBrand(catogeryId,SubId);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Yah!!', 'Sub Catogery Added ', 'Sucess')", true);
+                msgsuccess.InnerText = "Successfull";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
 

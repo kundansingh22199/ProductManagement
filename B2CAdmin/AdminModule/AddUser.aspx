@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminModule/Master.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="B2CAdmin.AdminModule.AddUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -105,7 +104,7 @@
                                         <asp:TextBox runat="server" MaxLength="10" ID="txtPanCard" placeholder="Enter Pan Card" class="form-control mb-2"></asp:TextBox>
                                     </div>
 
-                                    
+
                                     <div class="col-sm-4">
                                         <asp:Label runat="server" ID="Label11">GSTIN<span style="color:red"><b>*</b></span></asp:Label>
                                         <asp:TextBox runat="server" ID="txtGstIn" placeholder="Enter GstIn" class="form-control mb-2"></asp:TextBox>
@@ -154,8 +153,8 @@
                             </div>
                             <div class="card-footer">
                                 <asp:Button runat="server" ID="btnSubmit" Text="Submit" class="btn btn-primary mb-2 ml-2" OnClick="btnSubmit_Click" />
-                                <asp:Button runat="server" ID="btnUpdate" Text="UPDATE USER" class="btn btn-primary mb-2 ml-2" Visible="false" OnClick="btnUpdate_Click"/>
-                                <asp:Button runat="server" ID="btnReset" Text="RESET" class="btn btn-danger mb-2 ml-2 mr-2" OnClick="btnReset_Click"/>
+                                <asp:Button runat="server" ID="btnUpdate" Text="UPDATE USER" class="btn btn-primary mb-2 ml-2" Visible="false" OnClick="btnUpdate_Click" />
+                                <asp:Button runat="server" ID="btnReset" Text="RESET" class="btn btn-danger mb-2 ml-2 mr-2" OnClick="btnReset_Click" />
                             </div>
                         </div>
                     </div>
@@ -169,4 +168,42 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <div id="AlertModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size: 30px"></i></p>
+                    <div runat="server" id="errormsg" class="text-danger text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ConformationModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size: 30px"></i>
+                    </p>
+                    <div runat="server" id="msgsuccess" class="text-success text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

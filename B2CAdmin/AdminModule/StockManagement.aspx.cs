@@ -95,7 +95,8 @@ namespace B2CAdmin.AdminModule
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "swal('Oops!!', 'Somthing is Wrong', 'error')", true);
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
         protected void txtProductCode_TextChanged(object sender, EventArgs e)
@@ -179,10 +180,13 @@ namespace B2CAdmin.AdminModule
             if (result > 0)
             {
                 BindTaxType();
+                msgsuccess.InnerText = "Successfull";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
             else
             {
-
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
         }
         protected void ddlTaxType_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,6 +198,7 @@ namespace B2CAdmin.AdminModule
                 lblCgst.Text = dt.Rows[0]["CGST"].ToString();
                 lblSgst.Text = dt.Rows[0]["SGST"].ToString();
                 lblIgst.Text = dt.Rows[0]["IGST"].ToString();
+                
             }
         }
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -290,10 +295,13 @@ namespace B2CAdmin.AdminModule
                 if (result > 0)
                 {
                     GetStockLists(0);
+                    msgsuccess.InnerText = "Successfull";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
                 }
                 else
                 {
-
+                    errormsg.InnerText = "Somthing Error";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
                 }
             }
         }
@@ -370,10 +378,13 @@ namespace B2CAdmin.AdminModule
             if (result > 0)
             {
                 GetStockLists(0);
+                msgsuccess.InnerText = "Successfull";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#ConformationModel').modal();", true);
             }
             else
             {
-
+                errormsg.InnerText = "Somthing Error";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#AlertModel').modal();", true);
             }
             
         }

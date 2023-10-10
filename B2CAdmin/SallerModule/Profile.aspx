@@ -255,7 +255,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <asp:Image ID="UserImage1" runat="server" CssClass="img-circle" Style="height: 150px; width: 150px;" />
+                                            <asp:Image ID="UserImage1" runat="server" CssClass="img-circle" Style="height: 150px; width: 150px; border:1px solid black" />
                                             <asp:FileUpload runat="server" ID="UserUpload" Style="width: 96px; position: relative; top: -45px" onchange="loadFile(event)" />
                                             <div class="mt-1">
                                                 <h3><span runat="server" id="txtprofileName"></span></h3>

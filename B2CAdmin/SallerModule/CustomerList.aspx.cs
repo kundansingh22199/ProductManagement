@@ -25,7 +25,7 @@ namespace B2CAdmin.SallerModule
             try
             {
                 string CreateBy = Session["UserId"].ToString();
-                DataTable dt = clsSales.GetCustomerListBySallerId(CreateBy);
+                DataTable dt = clsSales.GetCustomerListBySallerId(CreateBy, txtfromDate.Text.Trim(), txtoDate.Text.Trim(),txtsearch.Text.Trim(),ddlSearch.SelectedValue);
                 if (dt.Rows.Count > 0 && dt != null)
                 {
                     PagedDataSource pgitems = new PagedDataSource();
@@ -71,6 +71,29 @@ namespace B2CAdmin.SallerModule
         {
             int pagenumber = Convert.ToInt32(e.CommandArgument) - 1;
             BindCustomerLists(pagenumber);
+        }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindCustomerLists(0);
+        }
+
+        protected void ddlSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSearch.SelectedValue == "ByDate")
+            {
+                txtsearch.Text = "";
+                divDate1.Visible = true;
+                divDate2.Visible = true;
+                divText.Visible = false;
+            }
+            else
+            {
+                txtfromDate.Text = "";
+                txtoDate.Text = "";
+                divDate1.Visible = false;
+                divDate2.Visible = false;
+                divText.Visible = true;
+            }
         }
     }
 }

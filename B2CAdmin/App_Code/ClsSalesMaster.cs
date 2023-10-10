@@ -114,26 +114,22 @@ namespace B2CAdmin.App_Code
                 return null;
             }
         }
-        public DataTable GetCustomerListBySallerId(string SallerId)
+        public DataTable GetCustomerListBySallerId(string SallerId, string FromDate, string ToDate, string SearchData, string Action)
         {
             try
             {
-                int Count = 0;
                 SqlConnection con = new SqlConnection(SqlCon);
                 SqlCommand cmd = new SqlCommand("SP_GetCustomerListBySallerId", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SallerId", SallerId);
+                cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    return null;
-                }
+                return dt;
             }
             catch (Exception ex)
             {
@@ -168,25 +164,21 @@ namespace B2CAdmin.App_Code
                 return null;
             }
         }
-        public DataTable GetCustomerList()
+        public DataTable GetCustomerList(string FromDate, string ToDate, string SearchData, string Action)
         {
             try
             {
-                int Count = 0;
                 SqlConnection con = new SqlConnection(SqlCon);
                 SqlCommand cmd = new SqlCommand("SP_GetCustomerList", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@SearchData", SearchData);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    return null;
-                }
+                return dt;
             }
             catch (Exception ex)
             {

@@ -170,7 +170,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="table-responsive" style="height: 400px; width: 100%; overflow: scroll;">
-                            <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; overflow: scroll; width: max-content;">
+                            <table class="table table-striped  table-bordered" id="myTable1" style="border: 1px solid; height: 30px; overflow: scroll; width: 100%;">
                                 <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                                     <HeaderTemplate>
                                         <thead>
@@ -335,7 +335,7 @@
                                     <asp:TextBox runat="server" ID="txtAvilableProduct" ReadOnly="true" class="form-control mb-2"></asp:TextBox>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Label runat="server" ID="Label32" for="">Add Product Size</asp:Label>
+                                    <asp:Label runat="server" ID="Label32" for="">Add Quantity</asp:Label>
                                     <asp:TextBox runat="server" ID="txtAddProduct" placeholder="Enter Product Size" class="form-control mb-2"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3">
@@ -350,6 +350,44 @@
                 </div>
             </div>
             <!-- Stock Modal End -->
+            <div id="AlertModel" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm ">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center"><i class="fa fa-times-circle fa-xl text-danger" aria-hidden="true" style="font-size: 30px"></i></p>
+                            <div runat="server" id="errormsg" class="text-danger text-center"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ConformationModel" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm ">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-left" style="text-align: left; position: relative">Conformation Dialog</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">
+                                <i class="fa fa-check-circle fa-xl text-success" aria-hidden="true" style="font-size: 30px"></i>
+                            </p>
+                            <div runat="server" id="msgsuccess" class="text-success text-center"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <script>
                 function myFunction() {

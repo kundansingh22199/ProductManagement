@@ -71,7 +71,6 @@
                                                 <th>Quantity</th>
                                                 <th>Price</th>
                                                 <th>Total Price</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                             </HeaderTemplate>
@@ -113,9 +112,6 @@
                                         </td>
                                         <td>
                                             <asp:Label ID="Label3" runat="server" Text='<%#string.Format("{0:n2}",Eval("S_TotalPrice")) %>'></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:LinkButton ID="linkRefund" CommandName="Refund" CommandArgument='<%# Eval("S_Id") %>' runat="server" CssClass="btn btn-danger font-weight-bold">Refund </asp:LinkButton>
                                         </td>
                                     </tr>
                                 </tbody>
